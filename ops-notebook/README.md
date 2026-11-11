@@ -2,7 +2,12 @@
 
 Aplikasi Rails ini yang dijalankan. Jangan mulai dari berkas ini.
 
-Baca dulu [README akar](../README.md), bagian **Bacaan sebelum mencoba**, lalu kerjakan bagian **Coba sendiri**. Setelah server hidup, baca [PENGGUNAAN.md](../PENGGUNAAN.md). Empat berkas pertama yang diunggah sendiri ada di `fixtures/demo/`, urutannya tertulis di README akar.
+Baca dulu [README akar](../README.md), bagian **Bacaan sebelum mencoba**, lalu kerjakan bagian **Coba sendiri**. Setelah server hidup, baca [PENGGUNAAN.md](../PENGGUNAAN.md). Bagan alurnya ada di [DIAGRAM.md](../DIAGRAM.md). Empat berkas pertama yang diunggah sendiri ada di `fixtures/demo/`, urutannya tertulis di README akar.
+
+```mermaid
+flowchart LR
+  dump["Dump"] --> peta["Pemetaan"] --> proses["Proses"] --> analisis["Analisis"] --> putusan["Keputusan"] --> verif["Verifikasi"] --> tanya["Tanya"]
+```
 
 Rails 7.0.10, Ruby 3.3.2, PostgreSQL. Jawaban bertanda `rules` dan `semantic false`. Model belum dipasang.
 

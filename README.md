@@ -15,7 +15,7 @@ Kerjakan dari atas ke bawah. Satu baris selesai sebelum pindah ke baris berikutn
 | 1 | README ini, sampai akhir bagian "Coba sendiri" | Server hidup di http://127.0.0.1:3000 dan tombol **Buka contoh produk** sudah dibuka |
 | 2 | [PENGGUNAAN.md](PENGGUNAAN.md), setelah server hidup | Tujuh halaman sudah dibuka sekali: Dump, Pemetaan, Proses, Analisis, Keputusan, Verifikasi, Tanya |
 | 3 | Empat berkas di `fixtures/demo/`, dalam urutan bagian "Unggah empat berkas ini" | Setiap berkas sudah diunggah ke notebook kosong dan hasilnya cocok dengan tabel |
-| 4 | Bagian "Penjelasan perilaku" di README ini | Jenis, kolom, nama berkas, dan batas macet sudah dipahami sebelum kode diubah |
+| 4 | Bagian "Penjelasan perilaku" di README ini, bersama [DIAGRAM.md](DIAGRAM.md) | Jenis, kolom, nama berkas, dan batas macet sudah dipahami sebelum kode diubah |
 | 5 | Kode, hanya setelah empat langkah di atas | Pintu masuk yang dibaca: `ops-notebook/app/services/evidence.rb`, lalu `evidence/lexicon.rb`, `evidence/ingest.rb`, `evidence/query.rb` |
 
 `CTO.md` adalah naskah pertemuan. Baca hanya bila perlu menjelaskan produk kepada orang lain. Berkas itu tidak diperlukan untuk menjalankan atau mengubah kode. Draf surel tidak disimpan di repositori ini.
@@ -117,6 +117,35 @@ Satu berkas `.pdf` yang hanya berupa gambar, atau satu `.pptx`. Keduanya ditahan
 ### 3. Baru baca penjelasan di bawah
 
 Bagian "Penjelasan perilaku" menjelaskan kenapa hasil di atas seperti itu. Baca bagian itu sebelum mengubah `lexicon.rb` atau skema kolom.
+
+## Diagram
+
+Bagan lengkap, termasuk dua sumber, bentuk berkas, tiga penilai, skema, dan batas model, ada di [DIAGRAM.md](DIAGRAM.md). Ringkasannya di bawah ini.
+
+```mermaid
+flowchart LR
+  dump["Dump"]
+  peta["Pemetaan"]
+  proses["Proses"]
+  analisis["Analisis"]
+  putusan["Keputusan"]
+  verif["Verifikasi"]
+  tanya["Tanya"]
+  dump --> peta --> proses --> analisis --> putusan --> verif --> tanya
+```
+
+```mermaid
+flowchart TD
+  unggah["Berkas"]
+  unggah --> bentuk{"Bentuk"}
+  bentuk -->|"txt atau md kecil"| langsung["Langsung dipecah"]
+  bentuk -->|"pdf punya teks"| pdf["Lapisan teks per halaman"]
+  bentuk -->|"docx punya XML"| docx["Paragraf XML"]
+  bentuk -->|"gambar, pptx, audio, pdf tanpa teks"| tahan["Ditahan"]
+  langsung --> penilai["Penilai aturan"]
+  pdf --> penilai
+  docx --> penilai
+```
 
 ## Penjelasan perilaku
 

@@ -39,6 +39,24 @@ Uji otomatis, dari folder `ops-notebook`, dengan dua variabel lingkungan yang sa
 bin/rails test
 ```
 
+## Alur yang terlihat
+
+Bagan yang lebih lengkap ada di [DIAGRAM.md](DIAGRAM.md). Di aplikasi, pita yang sama ada di setiap halaman, dan peta panjangnya ada di **Proses**.
+
+```mermaid
+flowchart LR
+  dump["Dump"] --> peta["Pemetaan"] --> proses["Proses"] --> analisis["Analisis"] --> putusan["Keputusan"] --> verif["Verifikasi"] --> tanya["Tanya"]
+```
+
+```mermaid
+flowchart TD
+  berkas["Unggah"] --> bentuk{"Bentuk"}
+  bentuk -->|"txt, md"| teks["Dipecah"]
+  bentuk -->|"pdf bertuliskan"| pdf["Lapisan teks"]
+  bentuk -->|"docx"| docx["XML paragraf"]
+  bentuk -->|"gambar, pptx, audio, pindaian"| tahan["Ditahan"]
+```
+
 ## Memakai produk
 
 1. Di beranda, klik **Buka contoh produk**. Tombol ini membuat satu notebook bernama "Operasional contoh", beberapa rekaman pekerjaan dan orang, serta berkas teks contoh. Data itu dummy.

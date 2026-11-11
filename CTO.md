@@ -16,6 +16,25 @@ Kedua, berkas yang di-dump. Sistem memecahnya, menebak jenisnya, lalu menyimpan 
 
 Pertanyaan, bentuknya percakapan, hanya boleh membaca baris yang sudah tersimpan. Kalau barisnya tidak ada, sistem menolak. Model tidak menulis SQL.
 
+## Diagram
+
+```mermaid
+flowchart LR
+  dump["Dump"] --> peta["Pemetaan"] --> proses["Proses"] --> analisis["Analisis"] --> putusan["Keputusan"] --> verif["Verifikasi"] --> tanya["Tanya"]
+```
+
+```mermaid
+flowchart TD
+  sumber["Dua sumber terpisah"] --> rekaman["Rekaman orang"]
+  sumber --> berkas["Berkas"]
+  berkas --> baca{"Ada teks di dalam berkas"}
+  baca -->|"txt, pdf, docx"| baris["Baris"]
+  baca -->|"gambar atau tanpa teks"| tahan["Ditahan, OCR belum jalan"]
+  baris --> tanya["Tanya mengulang baris atau menolak"]
+```
+
+Bagan yang sama, lebih rinci, ada di `DIAGRAM.md`.
+
 ## Peta alur
 
 Halaman Proses menampilkan peta dari dump sampai tanya. Tiap tahap menyebut apa yang dipakai, apa yang masih macet, dan perbaikan berikutnya.
