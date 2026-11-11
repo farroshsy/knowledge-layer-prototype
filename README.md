@@ -18,7 +18,7 @@ Kerjakan dari atas ke bawah. Satu baris selesai sebelum pindah ke baris berikutn
 | 4 | Bagian "Penjelasan perilaku" di README ini | Jenis, kolom, nama berkas, dan batas macet sudah dipahami sebelum kode diubah |
 | 5 | Kode, hanya setelah empat langkah di atas | Pintu masuk yang dibaca: `ops-notebook/app/services/evidence.rb`, lalu `evidence/lexicon.rb`, `evidence/ingest.rb`, `evidence/query.rb` |
 
-`CTO.md` dan `EMAIL-CTO.md` adalah naskah pertemuan. Baca hanya bila perlu menjelaskan produk kepada orang lain. Keduanya tidak diperlukan untuk menjalankan atau mengubah kode.
+`CTO.md` adalah naskah pertemuan. Baca hanya bila perlu menjelaskan produk kepada orang lain. Berkas itu tidak diperlukan untuk menjalankan atau mengubah kode. Draf surel tidak disimpan di repositori ini.
 
 Bukan bacaan pertama:
 
