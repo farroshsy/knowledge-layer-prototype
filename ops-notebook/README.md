@@ -24,4 +24,4 @@ Server lokal: http://127.0.0.1:3000
 
 Tombol **Buka contoh produk** membuat notebook, rekaman, dan berkas contoh. Teks yang sama tidak disimpan dua kali. Rencana tidak dihitung sebagai kejadian. Kutipan kehadiran yang saling menolak tampil sebagai bentrok.
 
-Halaman **Proses** memuat peta alur dan adegan 150 PDF. Tautan **Riset dan perbandingan** membuka `/riset`. Keduanya dijelaskan di README akar dan di `PENGGUNAAN.md`.
+Halaman **Proses** memuat peta alur dan adegan 150 PDF. Tautan **Riset dan perbandingan** membuka `/riset`. Tautan **Handoff** membuka `/handoff` dari `HANDOFF.md` di akar repositori. Ketiganya dijelaskan di README akar dan di `PENGGUNAAN.md`.

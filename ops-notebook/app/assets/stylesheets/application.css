@@ -50,7 +50,12 @@ code { font-size: 13px; }
 .chip { background: #fff; color: #1d1a16; border: 1px solid #1d1a16; border-radius: 999px; padding: 4px 10px; cursor: pointer; }
 .chip.on { background: #1d1a16; color: #fff; }
 .quote { border-left: 3px solid #1d1a16; padding-left: 10px; }
-.riset-link { color: #1d1a16; font-weight: 650; }
+.doc h1 { margin-bottom: 8px; }
+.doc h2 { margin-top: 28px; }
+.doc h2, .doc h3 { scroll-margin-top: 12px; }
+.doc pre { overflow-x: auto; background: #1d1a16; color: #f7f4ee; border-radius: 12px; padding: 12px; }
+.doc .compare { margin: 12px 0 20px; }
+.riset-link { color: #1d1a16; font-weight: 650; margin-right: 14px; }
 .riset-link.on { border-bottom: 2px solid #1d1a16; }
 .compare { overflow-x: auto; }
 .compare table { min-width: 720px; }

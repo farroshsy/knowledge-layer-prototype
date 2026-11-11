@@ -6,6 +6,22 @@ Ini bukan produk sidang, dan belum produksi. Model bahasa belum dipasang. Jawaba
 
 Engineer lain mulai dari urutan di bawah ini. Jangan mulai dari `klayer/`, `research/`, atau `council/`.
 
+Agen atau model yang melanjutkan pekerjaan baca [HANDOFF.md](HANDOFF.md) lebih dulu. Berkas itu mengunci keputusan riset yang sudah ditutup, pondasi yang sudah jalan, dan syarat bukti sebelum pipeline diganti. Jangan mengulang riset yang tabelnya sudah ada di sana. Layar yang sama: **Handoff** di http://127.0.0.1:3000/handoff.
+
+| Bagian handoff | Untuk apa |
+| --- | --- |
+| Produk yang diserahkan | Apa yang dijalankan, dan apa yang bukan produk |
+| Janji yang tidak boleh dikerjakan ulang | Perilaku yang sudah ada di kode dan uji |
+| Keputusan yang sudah ditutup | Riset yang tidak perlu diulang, plus sumbernya |
+| Yang sengaja tidak dikerjakan | RAG, graf, LMS, text-to-SQL, dan salinan perkara |
+| Pondasi, lalu perbaikan | Urutan mengganti satu tahap pipeline |
+| Biaya dan manfaat | Sel yang boleh diisi, dan sel yang tetap `not_measured` |
+| Proses bisnis yang bisa menyusul | Satu operator sekarang, peran tim kemudian |
+| Verifikasi | Bukti bahwa perubahan masih selaras dengan alur |
+| Delivery sebagai produk | Lima langkah yang boleh ditunjukkan |
+| Koordinasi bila ini produk tim | Cabang, peran, dan siapa yang tidak menulis bersamaan |
+| Docker dan lingkungan bersama | Kontrak Compose. Image-nya belum ada |
+
 ## Bacaan sebelum mencoba
 
 Kerjakan dari atas ke bawah. Satu baris selesai sebelum pindah ke baris berikutnya.
@@ -13,7 +29,7 @@ Kerjakan dari atas ke bawah. Satu baris selesai sebelum pindah ke baris berikutn
 | Urutan | Yang dibaca atau dikerjakan | Selesai bila |
 |---|---|---|
 | 1 | README ini, sampai akhir bagian "Coba sendiri" | Server hidup di http://127.0.0.1:3000 dan tombol **Buka contoh produk** sudah dibuka |
-| 2 | [PENGGUNAAN.md](PENGGUNAAN.md), setelah server hidup | Tujuh halaman sudah dibuka sekali, plus **Riset dan perbandingan** dan adegan 150 PDF di Proses |
+| 2 | [PENGGUNAAN.md](PENGGUNAAN.md), setelah server hidup | Tujuh halaman sudah dibuka sekali, plus **Riset dan perbandingan**, **Handoff**, dan adegan 150 PDF di Proses |
 | 3 | Empat berkas di `fixtures/demo/`, dalam urutan bagian "Unggah empat berkas ini" | Setiap berkas sudah diunggah ke notebook kosong dan hasilnya cocok dengan tabel |
 | 4 | Bagian "Penjelasan perilaku" di README ini, bersama [DIAGRAM.md](DIAGRAM.md) | Jenis, kolom, nama berkas, dan batas macet sudah dipahami sebelum kode diubah |
 | 5 | Kode, hanya setelah empat langkah di atas | Pintu masuk yang dibaca: `ops-notebook/app/services/evidence.rb`, lalu `evidence/lexicon.rb`, `evidence/ingest.rb`, `evidence/query.rb` |
@@ -71,7 +87,7 @@ Uji, dari folder `ops-notebook`, dengan dua variabel lingkungan yang sama:
 bin/rails test
 ```
 
-Jalankan uji ini setelah percobaan di bawah, atau sebelum mengubah kode. Hasil terakhir pada cabang ini: 29 run, 269 assertion, 0 gagal.
+Jalankan uji ini setelah percobaan di bawah, atau sebelum mengubah kode. Hasil terakhir pada cabang ini: 30 run, 288 assertion, 0 gagal.
 
 ## Coba sendiri
 

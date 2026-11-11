@@ -25,6 +25,22 @@ class EvidenceFlowTest < ActionDispatch::IntegrationTest
     assert_match "Sembilan belas berkas", response.body
   end
 
+  test "handoff page shows the decision record from the markdown file" do
+    get handoff_path
+
+    assert_response :success
+    assert_select "h1", text: "Handoff"
+    assert_select "a", text: "Biaya dan manfaat yang harus ditimbang"
+    assert_match "Janji yang tidak boleh dikerjakan ulang", response.body
+    assert_match "Keputusan yang sudah ditutup", response.body
+    assert_match "Proses bisnis yang bisa menyusul", response.body
+    assert_match "Verifikasi yang membuktikan selaras dengan alur", response.body
+    assert_match "Koordinasi bila ini produk tim", response.body
+    assert_match "Docker dan lingkungan bersama", response.body
+    assert_match "not_measured", response.body
+    assert_match "Compose belum ada", response.body
+  end
+
   test "budiono does not match budi and a plan is not an occurrence" do
     notebook = Notebook.create!(name: "uji")
     BusinessRecord.create!(notebook: notebook, kind: "person", display_name: "Budi", status: "unknown")
