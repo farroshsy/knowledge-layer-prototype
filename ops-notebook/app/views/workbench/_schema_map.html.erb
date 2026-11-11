@@ -1,0 +1,68 @@
+<% labels = {
+  "sop" => "SOP",
+  "notulen" => "Notulen",
+  "proposal" => "Proposal",
+  "laporan_progres" => "Laporan progres",
+  "other" => "Lainnya"
+} %>
+<% field_labels = {
+  "langkah" => "Langkah",
+  "penanggung_jawab" => "Penanggung jawab",
+  "peserta" => "Peserta",
+  "keputusan" => "Keputusan",
+  "tindakan" => "Tindakan",
+  "tujuan" => "Tujuan",
+  "anggaran" => "Anggaran",
+  "capaian" => "Capaian",
+  "hambatan" => "Hambatan"
+} %>
+
+<section class="schema-block" aria-label="Proses bisnis skema isian">
+  <h2>Skema isian</h2>
+  <p>Peserta, langkah, dan anggaran ada karena chat hanya mengulang baris yang sudah tersimpan. Empat jenis di bawah ini adalah jenis yang prototipe ini tahu cara mengubahnya menjadi baris. Kolom itu batas yang boleh diambil, bukan daftar yang wajib ada di setiap berkas.</p>
+
+  <ol class="biz" aria-label="Dari dua sumber sampai jawaban">
+    <li><span>1</span><strong>Dua sumber</strong><small>Rekaman orang dan pekerjaan terpisah dari berkas.</small></li>
+    <li><span>2</span><strong>Pecah bagian</strong><small>Teks polos dipecah pada baris kosong. Judul bagian ikut tersimpan.</small></li>
+    <li><span>3</span><strong>Tentukan jenis</strong><small>Kata dan baris isian menimbang sendiri. Nama berkas hanya penanda.</small></li>
+    <li><span>4</span><strong>Ambil kolom yang tertulis</strong><small>Jenis membuka daftar kolom. Yang tidak tertulis tidak dibuat.</small></li>
+    <li><span>5</span><strong>Tanya</strong><small>Ada baris: diulang. Tidak ada baris: ditolak.</small></li>
+  </ol>
+
+  <div class="schema" aria-label="Kolom yang dikenali tiap jenis">
+    <% Evidence::Lexicon::CATEGORY_FIELDS.each do |category, names| %>
+      <article class="<%= "empty" if names.empty? %>">
+        <h3><%= labels.fetch(category) %></h3>
+        <% if names.empty? %>
+          <p>Tidak ada kolom. Peserta, langkah, dan anggaran tidak dibuat.</p>
+        <% else %>
+          <ul>
+            <% names.each do |name| %>
+              <li><%= field_labels.fetch(name) %></li>
+            <% end %>
+          </ul>
+        <% end %>
+      </article>
+    <% end %>
+  </div>
+  <p class="muted">Isian hanya terbaca bila tertulis pada baris sendiri, misalnya <code>Peserta: Sari</code>. Kalimat lepas tidak menjadi kolom, walaupun jenis bagiannya tetap bisa notulen.</p>
+
+  <h3>Jika dokumen tidak mencakup kolom itu</h3>
+  <div class="fork" aria-label="Tiga jalan bila struktur tidak lengkap">
+    <article>
+      <small>Jalan 1</small>
+      <strong>Kolomnya kosong</strong>
+      <p>Proposal tanpa baris <code>Anggaran:</code> tetap proposal. Kolom yang tidak tertulis tidak dibuat. Pertanyaan tentang anggaran ditolak.</p>
+    </article>
+    <article>
+      <small>Jalan 2</small>
+      <strong>Bukan empat jenis itu</strong>
+      <p>Tidak ada kata kunci dan tidak ada baris yang dikenal. Jenisnya <strong>other</strong>. Daftar kolomnya kosong. Kalimat tetap bisa tersimpan sebagai klaim, yaitu kutipan apa adanya.</p>
+    </article>
+    <article>
+      <small>Jalan 3</small>
+      <strong>Label belum dikenal</strong>
+      <p>Baris <code>Risiko:</code> atau <code>PIC:</code> tidak disalin menjadi peserta, langkah, atau anggaran. Kolom baru hanya ada bila ditambahkan ke skema.</p>
+    </article>
+  </div>
+</section>

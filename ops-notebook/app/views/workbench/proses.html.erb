@@ -22,6 +22,8 @@
     <p class="muted">Jenis isi dipilih tiga penilai yang tidak saling melihat: kata, isian, dan nama berkas. Nama berkas hanya dicatat. Kalau kata dan isian berbeda, jenisnya other, tidak ada yang dipaksa menang. Pemeriksaan kutipan di halaman verifikasi tidak membaca hasil penilai itu. Ini masih aturan, bukan model.</p>
   </article>
 
+  <%= render "schema_map" %>
+
   <div class="agents">
     <%= link_to notebook_analisis_path(@notebook), class: "agent" do %>
       <small>Inventarisasi</small>

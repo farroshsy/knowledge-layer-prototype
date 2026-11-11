@@ -2,7 +2,7 @@
 
 <section>
   <h2>Analisis</h2>
-  <p class="muted">Jenis file dari ekstensi. Jenis isi dari kata di dalam bagian. Baris struktur adalah isian yang tersimpan, masih menempel pada kutipan.</p>
+  <p class="muted">Jenis file dari ekstensi. Jenis isi dari kata di dalam bagian. Baris struktur adalah isian yang tersimpan, masih menempel pada kutipan. Kolom yang tidak tertulis di berkas tidak dibuat. Bagan lengkapnya ada di <%= link_to "Proses", notebook_proses_path(@notebook) %>.</p>
   <% if @documents.empty? %>
     <p class="muted">Belum ada berkas. <%= link_to "Dump dulu", root_path(notebook_id: @notebook.id) %>.</p>
   <% elsif focus.nil? %>

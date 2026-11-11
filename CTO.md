@@ -26,6 +26,14 @@ Pertanyaan, bentuknya percakapan, hanya boleh membaca baris yang sudah tersimpan
 6. **Verifikasi.** Kutipan dicek masih ada di teks sumber. Orang yang memutuskan.
 7. **Tanya.** Contoh: "Siapa peserta notulen?" mengembalikan `Peserta: Sari dan Budi` beserta judul bagiannya. "Berapa anggaran proposal?" ditolak karena barisnya tidak ada.
 
+## Skema isian
+
+Peserta, langkah, dan anggaran bukan syarat wajib. Itu kolom yang prototipe ini tahu cara menyimpan, untuk empat jenis: SOP, notulen, proposal, dan laporan progres. Chat hanya mengulang baris yang tertulis. Kolom yang tidak ada di berkas tidak dibuat, dan pertanyaannya ditolak.
+
+Ada tiga jalan bila dokumen yang diberikan tidak mencakup struktur itu. Pertama, jenisnya dikenal tetapi satu kolom kosong: berkas tetap masuk, kolom kosong tidak diisi. Kedua, isinya tidak mirip empat jenis itu: jenisnya other, tanpa kolom, kalimat tetap bisa tersimpan sebagai kutipan. Ketiga, label yang belum dikenal, misalnya Risiko atau PIC, tidak disalin menjadi peserta, langkah, atau anggaran.
+
+Bagan ini ada di halaman Proses: lima langkah dari dua sumber sampai tanya, lima kartu jenis, lalu tiga jalan itu.
+
 ## Nama berkas
 
 Nama berkas dibaca otomatis, dan disimpan sebagai penanda. Ia bukan pemutus jenis. Kalau nama file `sop-rapat.txt` tetapi isinya notulen, jenisnya tetap notulen, dan penandanya tercatat `nama=sop, diabaikan`. Nama file sering salah. Isi yang menentukan. Kalau isi tidak memberi suara sama sekali, nama berkas juga belum dipakai untuk mengisi jenis. Itu sengaja, supaya label folder tidak menjadi fakta.

@@ -65,6 +65,23 @@ Di halaman **Dump**, seret berkas atau tempel teks lalu klik **Unggah berkas**.
 
 Rekaman pekerjaan dan orang diisi terpisah dari berkas. Kalimat di dalam berkas tidak mengubah status mereka. Gabungan rekaman dan berkas hanya terjadi bila kutipan memuat id publik rekaman itu, utuh, sebagai token sendiri.
 
+## Skema isian
+
+Halaman **Proses** menampilkan bagan ini. Empat jenis punya kolom tetap:
+
+- SOP: langkah, penanggung jawab.
+- Notulen: peserta, keputusan, tindakan.
+- Proposal: tujuan, anggaran.
+- Laporan progres: capaian, hambatan.
+
+Kolom itu batas yang boleh diambil, bukan daftar yang wajib ada. Isian hanya terbaca dari baris sendiri, misalnya `Peserta: Sari`.
+
+Jika berkas tidak mencakup struktur itu:
+
+1. Jenisnya dikenal, tetapi satu kolom tidak tertulis. Berkas tetap masuk. Kolom kosong tidak dibuat. Pertanyaan tentang kolom itu ditolak.
+2. Isinya tidak mirip empat jenis di atas. Jenisnya `other`. Tidak ada kolom peserta, langkah, atau anggaran. Kalimat tetap bisa tersimpan sebagai klaim.
+3. Labelnya belum dikenal, misalnya `Risiko:` atau `PIC:`. Label itu tidak disalin ke kolom yang sudah ada.
+
 ## Yang tidak boleh diharapkan
 
 Belum ada akun, antrian latar, atau model. Jawaban bertanda `rules` dan `semantic false`. Ini prototipe lokal, bukan produksi.
