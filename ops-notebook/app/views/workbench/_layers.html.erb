@@ -1,0 +1,30 @@
+<% sections = @documents.flat_map(&:sections) %>
+<% fields = sections.flat_map { |section| section.extracted_fields.select { |field| field.state == "active" } } %>
+<% lit = [] %>
+<% lit << "berkas" if @documents.any? %>
+<% lit << "teks" if @documents.any? { |document| document.body.present? } %>
+<% lit << "bagian" if sections.any? %>
+<% lit << "jenis" if sections.any?(&:active_classification) %>
+<% lit << "struktur" if fields.any? %>
+<% lit << "klaim" if @claims.any? %>
+<% lit << "tanya" if @result.present? %>
+<% nodes = [
+  ["berkas", "Berkas", "jenis file"],
+  ["teks", "Teks", "arsip utuh"],
+  ["bagian", "Bagian", "potongan"],
+  ["jenis", "Jenis isi", "kategori"],
+  ["struktur", "Struktur", "baris isian"],
+  ["klaim", "Klaim", "kutipan"],
+  ["tanya", "Tanya", "baris terambil"]
+] %>
+
+<ol class="pipe" style="--reach: <%= lit.size %>" aria-label="Lapisan dari berkas sampai pertanyaan">
+  <% nodes.each_with_index do |(key, title, hint), index| %>
+    <li class="<%= "lit" if lit.include?(key) %>" style="--i: <%= index %>">
+      <span><%= index + 1 %></span>
+      <strong><%= title %></strong>
+      <small><%= hint %></small>
+    </li>
+  <% end %>
+</ol>
+<p class="muted">Yang menyala adalah lapisan yang sudah ada barisnya di basis data. Garisnya hanya gambar urutan proses. Klasifikasi isi memakai aturan kata, bukan model. Pertanyaan nanti membaca baris ini, bukan menulis SQL.</p>

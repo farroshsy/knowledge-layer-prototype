@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# Start the local product. Ruby 3.3.2 has Rails; the default Ruby on this machine does not.
+cd "$(dirname "$0")/.."
+export RBENV_VERSION="${RBENV_VERSION:-3.3.2}"
+export SDKROOT="${SDKROOT:-$(xcrun --sdk macosx --show-sdk-path)}"
+exec bin/rails server -b 127.0.0.1 -p "${PORT:-3000}"

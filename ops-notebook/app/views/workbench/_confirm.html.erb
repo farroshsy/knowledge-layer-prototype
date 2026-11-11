@@ -1,0 +1,104 @@
+<section>
+  <h2>Lapisan tiap berkas</h2>
+  <p class="muted">Jenis file dibaca dari ekstensi. Jenis isi ditebak dari kata di dalam bagian, lalu bisa diganti satu klik. Isian dan klaim adalah baris yang nanti diambil saat ditanya.</p>
+  <% if @documents.empty? %>
+    <p class="muted">Belum ada berkas. <%= link_to "Kembali ke dump", root_path(notebook_id: @notebook.id, langkah: 1) %>.</p>
+  <% end %>
+  <% if @conflicts.any? %>
+    <article class="card">
+      <p><strong>Bentrok</strong></p>
+      <ul>
+        <% @conflicts.each do |left, right, _kind| %>
+          <li class="quote"><%= left.quote %> berbenturan dengan <%= right.quote %></li>
+        <% end %>
+      </ul>
+    </article>
+  <% end %>
+  <% chosen = params[:berkas].to_i %>
+  <% @documents.each do |document| %>
+    <% next if chosen.positive? && document.id != chosen %>
+    <% job = document.jobs.max_by(&:id) %>
+    <article class="card">
+      <p>
+        <strong><%= document.filename %></strong>
+        <span class="pill">jenis file · <%= file_kind(document.filename) %></span>
+        <span class="pill"><%= document.body.length %> karakter</span>
+      </p>
+      <p class="muted">Proses tersimpan: <%= job&.provider_label || "local-rules" %> · <%= job&.status || "completed" %>. Bukan antrean terpisah.</p>
+      <ol class="mini">
+        <li class="lit">Berkas</li>
+        <li class="lit">Teks</li>
+        <li class="<%= "lit" if document.sections.any? %>">Bagian <%= document.sections.size %></li>
+        <li class="lit">Jenis isi</li>
+        <li class="lit">Struktur</li>
+        <li class="<%= "lit" if document.claims.any? { |claim| claim.state == "active" } %>">Klaim</li>
+      </ol>
+      <% document.sections.sort_by(&:ordinal).each do |section| %>
+        <% classification = section.active_classification %>
+        <% active_fields = section.extracted_fields.select { |field| field.state == "active" } %>
+        <h3>Bagian <%= section.ordinal %></h3>
+        <p>Jenis isi: <strong><%= classification&.category %></strong> · metode <%= classification&.method %> · <%= classification&.reason %></p>
+        <% if active_fields.any? %>
+          <table>
+            <caption>Baris struktur</caption>
+            <thead>
+              <tr><th>Isian</th><th>Nilai</th><th>Kutipan</th></tr>
+            </thead>
+            <tbody>
+              <% active_fields.each do |field| %>
+                <tr>
+                  <td><%= field.name %></td>
+                  <td><%= field.value %></td>
+                  <td class="quote"><%= field.quote %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        <% else %>
+          <p class="muted">Tidak ada isian pada bagian ini. Jenis other memang tidak punya kolom.</p>
+        <% end %>
+        <div class="chips">
+          <% Evidence::CATEGORIES.each do |category| %>
+            <%= button_to category, section_correction_path(section), method: :post, params: { category: category }, class: "chip#{classification&.category == category ? " on" : ""}" %>
+          <% end %>
+        </div>
+        <details>
+          <summary>Teks sumber bagian <%= section.ordinal %></summary>
+          <p class="quote"><%= section.body_text %></p>
+        </details>
+      <% end %>
+      <% claims = document.claims.select { |claim| claim.state == "active" } %>
+      <% if claims.any? %>
+        <table>
+          <caption>Klaim yang bisa diambil</caption>
+          <thead>
+            <tr><th>Kutipan</th><th>Polaritas</th><th>Modalitas</th><th>Predikat</th><th>Tinjauan</th></tr>
+          </thead>
+          <tbody>
+            <% claims.each do |claim| %>
+              <tr>
+                <td class="quote"><%= claim.quote %></td>
+                <td><%= claim.polarity %></td>
+                <td><%= claim.modality %></td>
+                <td><%= claim.predicate.presence || "—" %></td>
+                <td><%= review_badge(claim) %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      <% else %>
+        <p class="muted">Tidak ada klaim pada berkas ini.</p>
+      <% end %>
+      <%= button_to "Proses ulang", reprocess_document_path(document), method: :post %>
+    </article>
+  <% end %>
+  <% if chosen.positive? %>
+    <p><%= link_to "Semua berkas", root_path(notebook_id: @notebook.id, langkah: 2) %></p>
+  <% end %>
+  <p><%= link_to "Siap ditanya", root_path(notebook_id: @notebook.id, langkah: 3) %></p>
+</section>
+
+<details>
+  <summary>Tinjauan klaim</summary>
+  <%= render "claims" %>
+</details>

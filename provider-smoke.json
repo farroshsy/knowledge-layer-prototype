@@ -1,0 +1,12 @@
+{
+  "inference": "online-grok-cli",
+  "offline_model": false,
+  "method": "grok",
+  "provider_error": null,
+  "categories": [
+    "notulen"
+  ],
+  "nonce_quote_exact": true,
+  "grok_quote_count": 4,
+  "warnings": []
+}

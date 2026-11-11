@@ -1,0 +1,41 @@
+<section>
+  <h2>Bukti dokumen</h2>
+  <p class="muted">Teks biasa. PDF dan OCR belum didukung. Koreksi kategori oleh pengguna tidak ditimpa proses ulang.</p>
+  <%= form_with url: notebook_documents_path(@notebook), method: :post do |form| %>
+    <%= form.label :filename, "Nama berkas" %>
+    <%= form.text_field :filename, value: "catatan.txt" %>
+    <%= form.label :body, "Teks" %>
+    <%= form.text_area :body, required: true %>
+    <%= form.submit "Unggah dan proses" %>
+  <% end %>
+  <% @documents.each do |document| %>
+    <article class="card">
+      <p><strong><%= document.filename %></strong></p>
+      <% job = document.jobs.order(:id).last %>
+      <% if job %>
+        <p class="muted">Job <%= job.status %> · metode <%= job.provider_method %> · label <%= job.provider_label %><%= " · galat #{job.provider_error}" if job.provider_error.present? %></p>
+      <% end %>
+      <% document.sections.order(:ordinal).each do |section| %>
+        <% classification = section.active_classification %>
+        <p>Bagian <%= section.ordinal %> · <%= classification&.category %> · metode <%= classification&.method %> · <%= classification&.reason %></p>
+        <p><%= section.body_text %></p>
+        <% active_fields = section.extracted_fields.select { |field| field.state == "active" } %>
+        <% if active_fields.empty? %>
+          <p class="muted">Tidak ada isian pada bagian ini.</p>
+        <% else %>
+          <ul class="fields">
+            <% active_fields.each do |field| %>
+              <li><%= field.name %>: <%= field.value %></li>
+            <% end %>
+          </ul>
+        <% end %>
+        <%= form_with url: section_correction_path(section), method: :post do |form| %>
+          <%= form.label :category, "Koreksi kategori" %>
+          <%= form.select :category, Evidence::CATEGORIES, selected: classification&.category %>
+          <%= form.submit "Simpan koreksi" %>
+        <% end %>
+      <% end %>
+      <%= button_to "Proses ulang", reprocess_document_path(document), method: :post %>
+    </article>
+  <% end %>
+</section>

@@ -1,0 +1,203 @@
+{
+  "generated_at": "2026-11-10T22:32:10.913404+07:00",
+  "sources": [
+    {
+      "path": "council/GROK-TAKEOVER.md",
+      "sha256": "dfb247ec959f46cb40525fdd5a88c7f61f7e63a7fbdd1efb8e84b6164ababcf8",
+      "included": "snapshot"
+    },
+    {
+      "path": ".council-runs/last-run.json",
+      "sha256": "497eed6309317d7bf700912de5e2510caa89e6adb544b3b51a66caa725464634",
+      "included": "snapshot"
+    },
+    {
+      "path": "/Users/farros/Downloads/Rakamin-MagangHub/CaseStudy/knowledge-layer-prototype/DELIVERY.md",
+      "sha256": "3de81510fd77708d984232c1a820716e7452860433389c6babefb917ac1389ff",
+      "included": "appendix",
+      "status": "Kontrak kerja; bukan bukti fitur selesai."
+    },
+    {
+      "path": "/Users/farros/Downloads/Rakamin-MagangHub/CaseStudy/knowledge-layer-prototype/council/shared-business-task.md",
+      "sha256": "8d35fb06a28cbc944aa377cfaa377c59c632d009c29ad5c11b503b0905289451",
+      "included": "appendix",
+      "status": "Panduan brief; domain contoh sintetis."
+    },
+    {
+      "path": "/Users/farros/Downloads/Rakamin-MagangHub/CaseStudy/Research/engineering/submission/screenshots/knowledge-platform-foundation-v0.1 (1).md",
+      "sha256": "a4080aef23ad6bb0ae12b1dbb0d226772a9076832f320ee80701c7ba490e4fc8",
+      "included": "appendix",
+      "status": "Discovery draft eksternal; tidak otomatis menjadi requirement."
+    },
+    {
+      "path": "/Users/farros/Downloads/Rakamin-MagangHub/CaseStudy/knowledge-layer-prototype/council/business-process-a.md",
+      "sha256": "fffc22c93a210a19788b344d166c2c30ad4242441fdd680a9bc0626dd8adb1db",
+      "included": "appendix",
+      "status": "Proposal Grok independen; belum tentu dipilih/diimplementasikan."
+    },
+    {
+      "path": "/Users/farros/Downloads/Rakamin-MagangHub/CaseStudy/knowledge-layer-prototype/council/business-process-b.md",
+      "sha256": "9682fd32337645664202e5517c58f4ecb1eeb39600159f685eb0cb5cc733dad6",
+      "included": "appendix",
+      "status": "Proposal Grok independen; bandingkan dengan A."
+    },
+    {
+      "path": "/Users/farros/Downloads/Rakamin-MagangHub/CaseStudy/knowledge-layer-prototype/research/risk-and-acceptance.md",
+      "sha256": "c4550a33d213e0d8b83c8c6d720140c04a2b65bcb7853c2a26bb6e1bba2302ad",
+      "included": "appendix",
+      "status": "Historis/usulan; bukan hasil eksekusi semua test."
+    },
+    {
+      "path": "/Users/farros/Downloads/Rakamin-MagangHub/CaseStudy/knowledge-layer-prototype/research/perkara-research.md",
+      "sha256": "821303e58beaa57e8c6e5aa21b11b8106c5b5c7ea4193131bfe013f6c58871d1",
+      "included": "appendix",
+      "status": "Selected-source research; klaim eksternal dibatasi."
+    },
+    {
+      "path": "/Users/farros/Downloads/Rakamin-MagangHub/CaseStudy/knowledge-layer-prototype/research/public-behavior-counterexamples.md",
+      "sha256": "babdbc7ed1894748a5d25230632a16d1b06463df443fd9819ad18795afad953b",
+      "included": "appendix",
+      "status": "Rancangan falsification; bukan semuanya sudah dijalankan."
+    },
+    {
+      "path": "/Users/farros/Downloads/Rakamin-MagangHub/CaseStudy/knowledge-layer-prototype/research/cross-domain-references.md",
+      "sha256": "f8d1e3409d9161e49babd2e92ce46a7c474d67ab7364e51649451a3c1f2160c8",
+      "included": "appendix",
+      "status": "Alternatif dan contoh; bukan stack yang sudah dipasang."
+    },
+    {
+      "path": "/Users/farros/Downloads/Rakamin-MagangHub/CaseStudy/knowledge-layer-prototype/research/stack-and-retrieval-source-notes.md",
+      "sha256": "e5348d28b17d2b2d762a087f620ba9efcce23da7bb621e4e3a6dd00c147f265a",
+      "included": "appendix",
+      "status": "Catatan primer dan trade-off; hasil paper tidak direproduksi."
+    },
+    {
+      "path": "/Users/farros/Downloads/Rakamin-MagangHub/CaseStudy/knowledge-layer-prototype/research/strategy-review-latest.md",
+      "sha256": "a955f76f795cf5864417c151372130ae30d10adaa5350155d74929c968540c14",
+      "included": "appendix",
+      "status": "Saran model berbasis snapshot historis; bukan otoritas CTO."
+    },
+    {
+      "path": "/Users/farros/Downloads/Rakamin-MagangHub/CaseStudy/knowledge-layer-prototype/research/reliability-research-review.md",
+      "sha256": "4499bdde661848e7fe5c1bd785d0d058762301807c81d4c965ed48f1a907e27e",
+      "included": "appendix",
+      "status": "Saran review; kontrol proposed != implemented."
+    },
+    {
+      "path": "/Users/farros/Downloads/Rakamin-MagangHub/CaseStudy/knowledge-layer-prototype/research/macro-validation-and-value.md",
+      "sha256": "bcbb0b1c915eeb2e23709dd843d6fd981ee4b3751bf643299ec1b594ff994c80",
+      "included": "appendix",
+      "status": "Hasil finite synthetic workflow + ide revenue yang belum divalidasi."
+    },
+    {
+      "path": "/Users/farros/Downloads/Rakamin-MagangHub/CaseStudy/knowledge-layer-prototype/docs/metrics-contract.md",
+      "sha256": "af8b3873279e390aad121a23abe0a74af5714d6e30e137d148d91a4f69438611",
+      "included": "appendix",
+      "status": "Definisi metrik; tidak berarti angka sudah tersedia."
+    },
+    {
+      "path": "/Users/farros/Downloads/Rakamin-MagangHub/CaseStudy/knowledge-layer-prototype/council/model-routing.md",
+      "sha256": "e4bdd3e0bffa93e2d46606e259cd031bb1b3f33e9e3092d502cb810291106cd9",
+      "included": "appendix",
+      "status": "Routing yang diusulkan/tercatat; cek setting aktif."
+    },
+    {
+      "path": "/Users/farros/Downloads/Rakamin-MagangHub/CaseStudy/knowledge-layer-prototype/council/evaluation-cases-draft.md",
+      "sha256": "70c6fcb9b9cd7fbb6d1d30017286f40858c190062ca7917e92b2becdef3254f2",
+      "included": "appendix",
+      "status": "Expected cases/dataset draft; bukan test run."
+    },
+    {
+      "path": "/Users/farros/Downloads/Rakamin-MagangHub/CaseStudy/knowledge-layer-prototype/BRAINSTORMING-UPDATE-2026-11-10.md",
+      "sha256": "6cd3b423ca96c5579fcf299883b5304b0658771fcb9197073acb8f133f775ee6",
+      "included": "appendix",
+      "status": "Snapshot 21.17 WIB; statusnya historis."
+    },
+    {
+      "path": "/Users/farros/Downloads/Rakamin-MagangHub/CaseStudy/knowledge-layer-prototype/.context-hub/input-packets/perkara-architecture-review.txt",
+      "sha256": "7b795701cbd0a2ee99b403e45eb7159c313658e9b69f5511292b6e42b670406b",
+      "included": "appendix",
+      "status": "Analisis sekunder berlabel nomor baris. Detail internal Perkara AI tidak terverifikasi."
+    },
+    {
+      "path": "/Users/farros/Downloads/Rakamin-MagangHub/CaseStudy/knowledge-layer-prototype/.context-hub/input-packets/x-analysis-review.txt",
+      "sha256": "2384db5260eb4d5aea6c55df4cfb1c59d1e440f490561e13ef989d38a804c0e2",
+      "included": "appendix",
+      "status": "Analisis sekunder; sebagian komentar belum dibuka langsung."
+    }
+  ],
+  "primary_references": [
+    [
+      "NIST GenAI Profile",
+      "https://www.nist.gov/publications/artificial-intelligence-risk-management-framework-generative-artificial-intelligence"
+    ],
+    [
+      "OWASP prompt injection",
+      "https://genai.owasp.org/llmrisk/llm01-prompt-injection/"
+    ],
+    [
+      "OWASP file upload",
+      "https://cheatsheetseries.owasp.org/cheatsheets/File_Upload_Cheat_Sheet.html"
+    ],
+    [
+      "OWASP SQL injection",
+      "https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html"
+    ],
+    [
+      "W3C provenance",
+      "https://www.w3.org/TR/prov-overview/"
+    ],
+    [
+      "W3C OWL primer",
+      "https://www.w3.org/TR/owl2-primer/"
+    ],
+    [
+      "Postgres materialized views",
+      "https://www.postgresql.org/docs/current/rules-materializedviews.html"
+    ],
+    [
+      "SQLite foreign keys",
+      "https://www.sqlite.org/foreignkeys.html"
+    ],
+    [
+      "SQLite WAL",
+      "https://www.sqlite.org/wal.html"
+    ],
+    [
+      "Rust ownership",
+      "https://doc.rust-lang.org/book/ch04-01-what-is-ownership.html"
+    ],
+    [
+      "Python asyncio",
+      "https://docs.python.org/3.14/library/asyncio.html"
+    ],
+    [
+      "GraphRAG",
+      "https://microsoft.github.io/graphrag/query/overview/"
+    ],
+    [
+      "LightRAG",
+      "https://arxiv.org/abs/2410.05779"
+    ],
+    [
+      "Late Chunking",
+      "https://arxiv.org/abs/2409.04701"
+    ],
+    [
+      "EAGR",
+      "https://arxiv.org/abs/2611.01910"
+    ],
+    [
+      "ALCE",
+      "https://github.com/princeton-nlp/ALCE"
+    ],
+    [
+      "ARES",
+      "https://aclanthology.org/2024.naacl-long.20/"
+    ],
+    [
+      "Strategyzer value proposition",
+      "https://www.strategyzer.com/library/the-value-proposition-canvas"
+    ]
+  ]
+}

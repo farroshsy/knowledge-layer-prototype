@@ -1,0 +1,8 @@
+<%= form_with url: notebook_records_path(@notebook), method: :post do |form| %>
+  <%= form.hidden_field :kind, value: kind %>
+  <%= form.label :display_name, "Nama" %>
+  <%= form.text_field :display_name, required: true %>
+  <%= form.label :status, "Status awal" %>
+  <%= form.select :status, BusinessRecord::STATUSES %>
+  <%= form.submit kind == "work_item" ? "Simpan pekerjaan" : "Simpan orang" %>
+<% end %>

@@ -1,0 +1,19 @@
+<section>
+  <h2>Jejak keputusan</h2>
+  <% if @decisions.empty? %>
+    <p class="muted">Belum ada keputusan.</p>
+  <% end %>
+  <ul>
+    <% @decisions.each do |decision| %>
+      <li>
+        <span class="pill"><%= decision_label(decision.decision) %></span>
+        <% if decision.business_record %>
+          <%= decision.business_record.display_name %> <%= decision.previous_status %> → <%= decision.next_status %>
+        <% elsif decision.claim %>
+          <%= decision.claim.quote.truncate(80) %>
+        <% end %>
+        — <%= decision.note %>
+      </li>
+    <% end %>
+  </ul>
+</section>

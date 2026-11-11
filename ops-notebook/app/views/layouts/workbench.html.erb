@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <title>Notebook operasional</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  </head>
+  <body>
+    <% if flash[:alert] %>
+      <p class="alert"><%= flash[:alert] %></p>
+    <% end %>
+    <% if flash[:notice] %>
+      <p class="notice"><%= flash[:notice] %></p>
+    <% end %>
+    <header class="top">
+      <div>
+        <h1>Notebook operasional</h1>
+        <p class="muted">Gudang berkas internal atau berkas klien. Tiap halaman adalah satu tahap: dump, proses, analisis, keputusan bukti, verifikasi, lalu tanya.</p>
+      </div>
+      <%= button_to "Buka contoh produk", example_notebooks_path, method: :post %>
+    </header>
+    <% if @notebook %>
+      <% current = action_name == "query" ? "tanya" : action_name %>
+      <p>Ruang aktif: <strong><%= @notebook.name %></strong></p>
+      <ol class="steps">
+        <% [
+          ["show", "Dump", "Taruh berkas", root_path(notebook_id: @notebook.id)],
+          ["pemetaan", "Pemetaan", "OCR atau lapisan teks", notebook_pemetaan_path(@notebook)],
+          ["proses", "Proses", "Urutan pembacaan", notebook_proses_path(@notebook)],
+          ["analisis", "Analisis", "Jenis dan baris", notebook_analisis_path(@notebook)],
+          ["keputusan", "Keputusan", "Baris yang boleh dipakai", notebook_keputusan_path(@notebook)],
+          ["verifikasi", "Verifikasi", "Kutipan lawan sumber", notebook_verifikasi_path(@notebook)],
+          ["tanya", "Tanya", "Ambil baris", notebook_tanya_path(@notebook)]
+        ].each do |key, title, hint, path| %>
+          <li class="<%= "on" if current == key %>">
+            <%= link_to path do %>
+              <strong><%= title %></strong>
+              <small><%= hint %></small>
+            <% end %>
+          </li>
+        <% end %>
+      </ol>
+      <% accepted = @claims.to_a.count { |claim| claim.latest_review&.decision == "accepted" } %>
+      <% if accepted.positive? %>
+        <p class="muted"><%= accepted %> klaim diterima. Itu keputusan orang, bukan hasil tebakan.</p>
+      <% end %>
+    <% end %>
+    <p class="muted">Pekerjaan dan orang tetap data terstruktur di luar berkas. Kalimat di berkas tidak mengubah status mereka.</p>
+    <%= yield %>
+  </body>
+</html>

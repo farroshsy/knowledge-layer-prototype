@@ -1,0 +1,79 @@
+<% words = @documents.sum { |document| document.body.to_s.split.size } %>
+<% fields = @documents.flat_map(&:sections).sum { |section| section.extracted_fields.count { |field| field.state == "active" } } %>
+<% held = @claims.count { |claim| quote_held?(claim) } %>
+<% usable = @claims.count { |claim| !claim.blocked? } %>
+
+<section class="flow">
+  <article class="plan">
+    <div class="plan-top">
+      <strong>Rencana pembacaan</strong>
+      <% if @documents.any? %>
+        <span class="pill">Selesai · aturan lokal</span>
+      <% else %>
+        <span class="pill">Belum ada berkas</span>
+      <% end %>
+    </div>
+    <ul>
+      <li>Kumpulkan berkas, catat jenis file, dan hitung kata yang benar-benar tersimpan.</li>
+      <li>Analisis jenis isi tiap bagian, lalu keluarkan baris isian.</li>
+      <li>Putuskan baris mana yang boleh diambil: rencana bukan kejadian, bentrok tetap terlihat, klaim yang ditolak tidak dipakai.</li>
+      <li>Verifikasi tiap klaim terhadap kutipannya di teks sumber. Keputusan akhir tetap di tangan Anda.</li>
+    </ul>
+    <p class="muted">Jenis isi dipilih tiga penilai yang tidak saling melihat: kata, isian, dan nama berkas. Nama berkas hanya dicatat. Kalau kata dan isian berbeda, jenisnya other, tidak ada yang dipaksa menang. Pemeriksaan kutipan di halaman verifikasi tidak membaca hasil penilai itu. Ini masih aturan, bukan model.</p>
+  </article>
+
+  <div class="agents">
+    <%= link_to notebook_analisis_path(@notebook), class: "agent" do %>
+      <small>Inventarisasi</small>
+      <strong>Jenis file dan bagian</strong>
+      <p><%= @documents.size %> berkas · <%= words %> kata</p>
+    <% end %>
+    <%= link_to notebook_analisis_path(@notebook), class: "agent" do %>
+      <small>Analisis</small>
+      <strong>Jenis isi dan baris</strong>
+      <p><%= fields %> Baris struktur</p>
+    <% end %>
+    <%= link_to notebook_keputusan_path(@notebook), class: "agent" do %>
+      <small>Keputusan</small>
+      <strong>Baris yang boleh dipakai</strong>
+      <p><%= usable %> boleh diambil · <%= @conflicts.size %> bentrok</p>
+    <% end %>
+    <%= link_to notebook_verifikasi_path(@notebook), class: "agent" do %>
+      <small>Verifikasi</small>
+      <strong>Kutipan lawan sumber</strong>
+      <p><%= held %> dari <%= @claims.size %> kutipan masih ada di teks</p>
+    <% end %>
+  </div>
+
+  <div class="flow-join">
+    <%= link_to notebook_keputusan_path(@notebook), class: "agent" do %>
+      <small>Penggabungan</small>
+      <strong><%= usable %> baris digabung untuk dibaca</strong>
+      <p class="muted">Hanya klaim yang tidak ditolak dan tidak kekurangan bukti.</p>
+    <% end %>
+    <%= link_to notebook_verifikasi_path(@notebook), class: "agent" do %>
+      <small>Pemeriksaan sumber</small>
+      <strong><%= held %> klaim menempel pada kutipan</strong>
+      <p class="muted">Anda yang menerima, menolak, atau meminta bukti lagi.</p>
+    <% end %>
+  </div>
+
+  <%= link_to notebook_tanya_path(@notebook), class: "agent final" do %>
+    <small>Jawaban</small>
+    <strong>Tanya dari baris yang sudah disimpan</strong>
+  <% end %>
+
+  <% if @documents.any? %>
+    <ul class="filelist">
+      <% @documents.each do |document| %>
+        <li>
+          <strong><%= document.filename %></strong>
+          <span class="pill">jenis file · <%= file_kind(document.filename) %></span>
+          <span class="pill"><%= document.body.to_s.split.size %> kata</span>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <p class="muted">Notebook ini ruang terpisah di basis data lokal. Belum ada akun, undangan tim, enkripsi, atau pengiriman berkas ke model pihak ketiga. PDF, audio, dan video belum bisa diunggah.</p>
+</section>
