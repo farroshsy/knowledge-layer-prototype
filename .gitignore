@@ -1,0 +1,17 @@
+.DS_Store
+__pycache__/
+*.pyc
+data/*.sqlite
+data/*.sqlite-*
+ops-notebook/config/master.key
+ops-notebook/log/
+ops-notebook/tmp/
+ops-notebook/storage/
+.context-hub/
+.council-audits/
+.council-bootstrap/
+.council-runs/
+.acceptance-runs/
+.parallel-builds/
+.research-review/
+.grok/
