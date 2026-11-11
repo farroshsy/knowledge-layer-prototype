@@ -42,13 +42,14 @@ bin/rails test
 ## Memakai produk
 
 1. Di beranda, klik **Buka contoh produk**. Tombol ini membuat satu notebook bernama "Operasional contoh", beberapa rekaman pekerjaan dan orang, serta berkas teks contoh. Data itu dummy.
-2. Lewati tujuh halaman dari kiri ke kanan: **Dump**, **Pemetaan**, **Proses**, **Analisis**, **Keputusan**, **Verifikasi**, **Tanya**.
-3. Di **Tanya**, tiga pertanyaan siap pakai:
+2. Lewati tujuh halaman dari kiri ke kanan: **Dump**, **Pemetaan**, **Proses**, **Analisis**, **Keputusan**, **Verifikasi**, **Tanya**. Di tiap halaman ada pita alur: apa yang dipakai, dan kalimat macetnya. Halaman **Proses** memuat peta lengkap, termasuk yang membuat sistem bekerja hari ini dan yang belum dipasang.
+3. Yang bekerja hari ini adalah Rails, PostgreSQL, dan aturan lokal. Gemini atau model lain belum dipasang. Perbaikan yang tertulis di peta, termasuk model, belum berjalan.
+4. Di **Tanya**, tiga pertanyaan siap pakai:
    - "Apa status pilot?" membaca rekaman bisnis. Status rencana tidak dihitung sebagai kejadian.
    - "Apakah pilot sudah berjalan?" tetap rencana, bukan kejadian.
    - "Apakah Budi hadir?" menampilkan bentrok, karena ada kutipan yang saling menolak.
-4. Ketik juga "Siapa peserta notulen?". Jawaban mengulang baris `Peserta:` di bawah judul bagian, bukan kalimat yang disusun model.
-5. "Berapa anggaran proposal?" ditolak bila baris anggaran tidak ada.
+5. Ketik juga "Siapa peserta notulen?". Jawaban mengulang baris `Peserta:` di bawah judul bagian, bukan kalimat yang disusun model.
+6. "Berapa anggaran proposal?" ditolak bila baris anggaran tidak ada.
 
 Notebook kosong, tanpa contoh: isi nama ruang, lalu klik **Buat notebook**.
 

@@ -4,6 +4,8 @@
 <% usable = @claims.count { |claim| !claim.blocked? } %>
 
 <section class="flow">
+  <%= render "flow_map" %>
+
   <article class="plan">
     <div class="plan-top">
       <strong>Rencana pembacaan</strong>

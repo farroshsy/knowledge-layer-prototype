@@ -154,6 +154,44 @@ a.agent { display: block; text-decoration: none; animation: pipe-pop 0.45s ease 
 .schema .empty { border-style: dashed; }
 .fork article { border-top-width: 4px; }
 .fork small { font-size: 12px; text-transform: uppercase; letter-spacing: 0.04em; }
+.rail { margin: 8px 0 20px; }
+.rail-note, .stage, .split article {
+  background: #fff;
+  border: 1px solid #e0d8cb;
+  border-radius: 12px;
+  padding: 12px;
+}
+.rail ol, .map { display: grid; gap: 8px; list-style: none; padding: 0; margin: 10px 0; }
+.rail ol { grid-template-columns: repeat(7, minmax(0, 1fr)); }
+.rail li {
+  background: #fff;
+  border: 1px solid #e0d8cb;
+  border-radius: 12px;
+  padding: 8px;
+  min-width: 0;
+}
+.rail li.on { border-color: #1d1a16; }
+.rail strong, .rail small, .rail em { display: block; }
+.rail small { color: #5e584e; font-size: 12px; margin: 4px 0; }
+.rail em { font-style: normal; font-size: 12px; background: #fff4d6; border-radius: 8px; padding: 4px; }
+.stage { margin-top: 8px; }
+.stuck, .later, .map b { font-size: 12px; letter-spacing: 0.03em; text-transform: uppercase; }
+.stuck { color: #6a4b12; }
+.later { color: #1d4a32; }
+.split { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.later-box { background: #fff4d6; }
+.map li { display: grid; grid-template-columns: 36px 1fr; gap: 10px; align-items: start; }
+.map li span {
+  display: inline-grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #1d1a16;
+  color: #fff;
+  font-size: 13px;
+}
+.map p { margin: 4px 0; }
 @keyframes pipe-draw { from { transform: scaleX(0); } to { transform: scaleX(1); } }
 @keyframes pipe-pop { from { transform: translateY(8px); opacity: 0; } to { transform: none; opacity: 1; } }
 @media (prefers-reduced-motion: reduce) {
@@ -162,7 +200,9 @@ a.agent { display: block; text-decoration: none; animation: pipe-pop 0.45s ease 
 @media (max-width: 720px) {
   .top { display: block; }
   .stats, .steps { grid-template-columns: 1fr; }
-  .agents, .flow-join, .pipe, .mini, .biz, .schema, .fork { display: flex; overflow-x: auto; }
+  .agents, .flow-join, .pipe, .mini, .biz, .schema, .fork, .rail ol { display: flex; overflow-x: auto; }
+  .rail li { min-width: 160px; }
+  .split { display: block; }
   .biz li, .schema article, .fork article { min-width: 180px; }
   .biz li:not(:last-child)::after { content: none; }
   .agent { min-width: 180px; }

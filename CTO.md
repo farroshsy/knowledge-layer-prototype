@@ -16,6 +16,14 @@ Kedua, berkas yang di-dump. Sistem memecahnya, menebak jenisnya, lalu menyimpan 
 
 Pertanyaan, bentuknya percakapan, hanya boleh membaca baris yang sudah tersimpan. Kalau barisnya tidak ada, sistem menolak. Model tidak menulis SQL.
 
+## Peta alur
+
+Halaman Proses menampilkan peta dari dump sampai tanya. Tiap tahap menyebut apa yang dipakai, apa yang masih macet, dan perbaikan berikutnya.
+
+Yang membuatnya bekerja hari ini: Rails, PostgreSQL, dan aturan lokal. Gemini atau model lain belum dipasang. Kalau dipasang nanti, model hanya mengembalikan maksud tertutup. Rails yang menyusun kueri. Jawaban yang tidak menempel pada kutipan ditolak.
+
+Macet terbesar ada di pemetaan: PDF, OCR, dokumen kantor, rekaman, dan berkas besar ditahan karena pembacanya belum ada. Macet di tanya: pencarian masih irisan kata, jadi beda susunan kalimat bisa tidak ketemu.
+
 ## Cara kerja, halaman demi halaman
 
 1. **Dump.** Taruh banyak TXT atau Markdown.

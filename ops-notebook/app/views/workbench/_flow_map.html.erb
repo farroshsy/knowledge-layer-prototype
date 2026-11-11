@@ -1,0 +1,35 @@
+<section class="flow-map" aria-label="Peta alur lengkap">
+  <h2>Peta alur</h2>
+  <p>Dari dump sampai tanya, yang menjalankan adalah Rails, PostgreSQL, dan aturan lokal. Gemini atau model lain belum dipasang. Kotak kanan adalah perbaikan, bukan jalur yang sedang berjalan.</p>
+  <div class="split">
+    <article>
+      <h3>Yang membuatnya bekerja</h3>
+      <ul>
+        <li>Rails menerima unggahan, menyimpan, dan menjawab di dalam satu aplikasi.</li>
+        <li>PostgreSQL menyimpan rekaman, berkas, bagian, jenis, isian, dan klaim.</li>
+        <li>Aturan lokal menimbang jenis, menandai bentrok, mengecek kutipan, dan mencari baris.</li>
+      </ul>
+    </article>
+    <article class="later-box">
+      <h3>Yang belum dipasang</h3>
+      <ul>
+        <li>Antrian latar, akun, lapisan teks PDF, OCR, XML, transkrip, dan pemotongan berkas besar.</li>
+        <li>Model seperti Gemini. Nanti ia hanya boleh mengembalikan maksud tertutup. Rails yang menyusun kueri. Model tidak menulis SQL.</li>
+        <li>Jawaban model yang tidak menempel pada kutipan ditolak di verifikasi.</li>
+      </ul>
+    </article>
+  </div>
+  <ol class="map">
+    <% ApplicationHelper::PIPELINE.each_with_index do |stage, index| %>
+      <li>
+        <span><%= index + 1 %></span>
+        <div>
+          <strong><%= stage[:title] %></strong>
+          <p><b>Dipakai.</b> <%= stage[:uses] %>. <%= stage[:how] %></p>
+          <p><b>Macet.</b> <%= stage[:stuck] %></p>
+          <p><b>Perbaikan.</b> <%= stage[:improve] %></p>
+        </div>
+      </li>
+    <% end %>
+  </ol>
+</section>

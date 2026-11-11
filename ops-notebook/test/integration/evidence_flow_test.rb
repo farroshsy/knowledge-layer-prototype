@@ -172,6 +172,8 @@ class EvidenceFlowTest < ActionDispatch::IntegrationTest
     get notebook_proses_path(notebook)
     assert_response :success
     assert_includes response.body, "Rencana pembacaan"
+    assert_includes response.body, "Peta alur"
+    assert_includes response.body, "Gemini atau model lain belum dipasang"
     assert_includes response.body, "Skema isian"
     assert_includes response.body, "Kolom yang tidak tertulis tidak dibuat"
     assert_includes response.body, "Label belum dikenal"

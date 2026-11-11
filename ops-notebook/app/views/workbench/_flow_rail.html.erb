@@ -1,0 +1,22 @@
+<nav class="rail" aria-label="Alur dari dump sampai tanya">
+  <p class="rail-note">Yang bekerja hari ini: Rails menyimpan dan mengambil, PostgreSQL menyimpan baris, aturan lokal yang menimbang. Gemini atau model lain belum dipasang.</p>
+  <ol>
+    <% ApplicationHelper::PIPELINE.each do |stage| %>
+      <% on = pipeline_key == stage[:key] %>
+      <li class="<%= "on" if on %>">
+        <strong><%= stage[:title] %></strong>
+        <small><%= stage[:uses] %></small>
+        <em><%= stage[:stuck] %></em>
+      </li>
+    <% end %>
+  </ol>
+  <% current = ApplicationHelper::PIPELINE.find { |stage| stage[:key] == pipeline_key } %>
+  <% if current && pipeline_key != "proses" %>
+    <article class="stage">
+      <p><strong><%= current[:title] %></strong> · dipakai: <%= current[:uses] %></p>
+      <p><%= current[:how] %></p>
+      <p><span class="stuck">Macet.</span> <%= current[:stuck] %></p>
+      <p><span class="later">Perbaikan.</span> <%= current[:improve] %></p>
+    </article>
+  <% end %>
+</nav>

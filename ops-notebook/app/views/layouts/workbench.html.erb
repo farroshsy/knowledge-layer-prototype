@@ -17,7 +17,7 @@
     <header class="top">
       <div>
         <h1>Notebook operasional</h1>
-        <p class="muted">Gudang berkas internal atau berkas klien. Tiap halaman adalah satu tahap: dump, proses, analisis, keputusan bukti, verifikasi, lalu tanya.</p>
+        <p class="muted">Gudang berkas internal atau berkas klien. Alur yang berjalan: dump, pemetaan, proses, analisis, keputusan, verifikasi, lalu tanya.</p>
       </div>
       <%= button_to "Buka contoh produk", example_notebooks_path, method: :post %>
     </header>
@@ -48,6 +48,9 @@
       <% end %>
     <% end %>
     <p class="muted">Pekerjaan dan orang tetap data terstruktur di luar berkas. Kalimat di berkas tidak mengubah status mereka.</p>
+    <% if @notebook %>
+      <%= render "workbench/flow_rail" %>
+    <% end %>
     <%= yield %>
   </body>
 </html>
