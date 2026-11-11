@@ -71,7 +71,7 @@ Uji, dari folder `ops-notebook`, dengan dua variabel lingkungan yang sama:
 bin/rails test
 ```
 
-Jalankan uji ini setelah percobaan di bawah, atau sebelum mengubah kode. Hasil terakhir pada cabang ini: 27 run, 189 assertion, 0 gagal.
+Jalankan uji ini setelah percobaan di bawah, atau sebelum mengubah kode. Hasil terakhir pada cabang ini: 28 run, 209 assertion, 0 gagal.
 
 ## Coba sendiri
 
