@@ -1,0 +1,33 @@
+<section>
+  <h2>Tinjauan klaim</h2>
+  <p class="muted">Klaim yang ditolak atau kekurangan bukti tidak dipakai untuk menjawab. Proses ulang membawa keputusan yang sama ke kutipan yang sama.</p>
+  <% if @conflicts.any? %>
+    <article class="card">
+      <p><strong>Bentrok</strong></p>
+      <ul>
+        <% @conflicts.each do |left, right, _kind| %>
+          <li><%= left.quote %> berbenturan dengan <%= right.quote %></li>
+        <% end %>
+      </ul>
+    </article>
+  <% end %>
+  <% if @claims.empty? %>
+    <p class="muted">Belum ada klaim.</p>
+  <% end %>
+  <% @claims.each do |claim| %>
+    <article class="card">
+      <p><span class="pill"><%= review_badge(claim) %></span> <%= claim.polarity %> · <%= claim.modality %></p>
+      <p><%= claim.quote %></p>
+      <% if claim.latest_review %>
+        <p class="muted"><%= claim.latest_review.note %></p>
+      <% end %>
+      <%= form_with url: claim_decision_path(claim), method: :post do |form| %>
+        <%= form.label :decision, "Keputusan" %>
+        <%= form.select :decision, [["diterima", "accepted"], ["ditolak", "rejected"], ["bukti kurang", "needs_evidence"]] %>
+        <%= form.label :note, "Catatan" %>
+        <%= form.text_field :note, required: true %>
+        <%= form.submit "Simpan tinjauan" %>
+      <% end %>
+    </article>
+  <% end %>
+</section>

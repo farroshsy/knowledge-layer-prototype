@@ -1,0 +1,36 @@
+<section>
+  <h2>Keputusan bukti</h2>
+  <p class="muted">Ini bukan putusan bisnis dan bukan putusan hukum. Aturan hanya menandai baris mana yang boleh diambil saat ditanya.</p>
+  <% if @conflicts.any? %>
+    <article class="card">
+      <p><strong>Bentrok</strong></p>
+      <ul>
+        <% @conflicts.each do |left, right, _kind| %>
+          <li class="quote"><%= left.quote %> berbenturan dengan <%= right.quote %></li>
+        <% end %>
+      </ul>
+    </article>
+  <% else %>
+    <p class="muted">Tidak ada bentrok yang tersimpan.</p>
+  <% end %>
+  <% if @claims.empty? %>
+    <p class="muted">Belum ada klaim.</p>
+  <% else %>
+    <table>
+      <caption>Baris setelah keputusan</caption>
+      <thead>
+        <tr><th>Berkas</th><th>Kutipan</th><th>Modalitas</th><th>Pakai</th></tr>
+      </thead>
+      <tbody>
+        <% @claims.each do |claim| %>
+          <tr>
+            <td><%= claim.document.filename %></td>
+            <td class="quote"><%= claim.quote %></td>
+            <td><%= claim.modality == "plan" ? "rencana, bukan kejadian" : claim.modality %></td>
+            <td><%= claim.blocked? ? "tidak dipakai" : "boleh diambil" %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+</section>

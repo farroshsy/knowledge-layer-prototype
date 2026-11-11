@@ -1,0 +1,148 @@
+{
+  "id": "6c9b0820-9230-4542-b928-720aff223d19",
+  "ok": true,
+  "result": {
+    "terminals": [
+      {
+        "handle": "term_e6e9d453-ee2b-4125-962e-a49153bb1369",
+        "ptyId": "4b1cf78e-ea28-4880-896c-4d94acc87046::/Users/farros/Downloads/Rakamin-MagangHub/CaseStudy/knowledge-layer-prototype@@5d336b03",
+        "incarnationId": "83b7fc16-1808-43a6-bff7-298250b586a0",
+        "orphaned": false,
+        "worktreeId": "4b1cf78e-ea28-4880-896c-4d94acc87046::/Users/farros/Downloads/Rakamin-MagangHub/CaseStudy/knowledge-layer-prototype",
+        "worktreePath": "/Users/farros/Downloads/Rakamin-MagangHub/CaseStudy/knowledge-layer-prototype",
+        "branch": "",
+        "tabId": "0c9496a6-5c10-4590-8fb2-676c77d07d88",
+        "leafId": "349fefbe-f78d-4f86-b715-226fdcf84323",
+        "title": "Perkara knowledge-layer council and back… - grok",
+        "connected": true,
+        "writable": true,
+        "lastOutputAt": 1794317434088,
+        "preview": "⋅:⸬⁙⋅:2⸬⁙⋅:⸬⁙⋅3:⸬⁙⋅:⸬⁙⋅4:⸬⁙⋅:⸬⁙5⋅:⸬⁙⋅:⸬6⁙⋅:⸬⁙⋅:7⸬⁙⋅:⸬⁙⋅8:⸬⁙⋅:⸬⁙9⋅:⸬⁙⋅:⸬10⁙⋅:⸬⁙⋅:1⸬⁙⋅:⸬⁙⋅2:⸬⁙⋅:⸬⁙⋅3:⸬⁙⋅:⸬⁙4⋅:⸬⁙⋅:⸬5⁙⋅:⸬⁙⋅:6⸬⁙⋅:⸬⁙⋅7:⸬⁙⋅:⸬⁙8⋅:⸬⁙⋅:⸬⁙9⋅:⸬⁙⋅:⸬20⁙⋅:⸬⁙⋅:1⸬⁙⋅:⸬⁙⋅2:⸬⁙⋅:⸬⁙3⋅:⸬⁙⋅:⸬4⁙⋅:⸬⁙⋅:⸬5⁙⋅:⸬⁙⋅:6⸬⁙⋅:⸬⁙⋅7:⸬⁙⋅:⸬⁙8⋅:⸬⁙⋅:⸬9⁙⋅:⸬⁙⋅:30⸬⁙⋅:⸬⁙⋅:1⸬⁙⋅:⸬⁙⋅2:⸬⁙⋅:⸬⁙3⋅:⸬⁙⋅:⸬4⁙⋅:⸬⁙⋅:5⸬⁙⋅:⸬⁙⋅:6⸬⁙⋅:⸬⁙⋅7:⸬⁙⋅",
+        "executionHostId": "local",
+        "agentIdentity": "grok"
+      },
+      {
+        "handle": "term_8a2c0e4c-6764-4ba0-95e1-a9a8eaae1bb7",
+        "ptyId": "4b1cf78e-ea28-4880-896c-4d94acc87046::/Users/farros/Downloads/Rakamin-MagangHub/CaseStudy/knowledge-layer-prototype@@64fcb27f",
+        "incarnationId": "987bd58b-e7ff-4577-a4b4-bed4110e15f5",
+        "orphaned": false,
+        "worktreeId": "4b1cf78e-ea28-4880-896c-4d94acc87046::/Users/farros/Downloads/Rakamin-MagangHub/CaseStudy/knowledge-layer-prototype",
+        "worktreePath": "/Users/farros/Downloads/Rakamin-MagangHub/CaseStudy/knowledge-layer-prototype",
+        "branch": "",
+        "tabId": "fcd48ec5-848e-4dd9-a66b-142a7dcb3add",
+        "leafId": "0cc30220-a98c-455f-b90e-662d7200f682",
+        "title": "⚠ Action Required - ⠸ - Discover Orca orchestration worker and r… - Grok independent workers Orca delivery - grok",
+        "connected": true,
+        "writable": true,
+        "lastOutputAt": 1794317434114,
+        "preview": "◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆",
+        "executionHostId": "local",
+        "agentIdentity": "grok"
+      },
+      {
+        "handle": "term_d22da1cfeee1cf5553dd63e5ddf641cb",
+        "ptyId": "4b1cf78e-ea28-4880-896c-4d94acc87046::/Users/farros/Downloads/Rakamin-MagangHub/CaseStudy/knowledge-layer-prototype@@serve-5605217a-c7e1-44a8-ac16-88b89cdb967c",
+        "incarnationId": "c02020f8-96d0-4233-8bfa-ff81d995d092",
+        "orphaned": false,
+        "worktreeId": "4b1cf78e-ea28-4880-896c-4d94acc87046::/Users/farros/Downloads/Rakamin-MagangHub/CaseStudy/knowledge-layer-prototype",
+        "worktreePath": "/Users/farros/Downloads/Rakamin-MagangHub/CaseStudy/knowledge-layer-prototype",
+        "branch": "",
+        "tabId": "3b25572c-7a36-4d02-86cb-0292ebf66b0b",
+        "leafId": "7b96c9ee-8ffd-499f-bd33-5465624d44cb",
+        "title": "⚠ Action Required - ⠼ - Report worker_done for the architecture… - Perkara knowledge-layer risk and contrac… - grok",
+        "connected": true,
+        "writable": true,
+        "lastOutputAt": 1794317434113,
+        "preview": "◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆ 7◆◆◆◆◆◆ 8◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆ 8◆◆◆◆ 9◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆ 9◆◆◆◆◆ 10m0◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆ 40◆◆◆◆◆ 1◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆ 1◆◆◆◆◆ 2◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆ 2◆◆◆◆◆ 3◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆ 3◆◆◆◆◆ 4◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆ 4◆◆◆◆◆ 5◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆ 5◆◆◆◆◆ 6◆◆◆◆◆◆◆◆◆◆◆◆",
+        "executionHostId": "local",
+        "agentIdentity": "grok"
+      },
+      {
+        "handle": "term_f6fae2e5-cfcb-480f-ad7a-247b761d2070",
+        "ptyId": "4b1cf78e-ea28-4880-896c-4d94acc87046::/Users/farros/Downloads/Rakamin-MagangHub/CaseStudy/knowledge-layer-prototype@@5cb5eaab",
+        "incarnationId": "2d02b000-5033-477e-a346-d40487ed58eb",
+        "orphaned": false,
+        "worktreeId": "4b1cf78e-ea28-4880-896c-4d94acc87046::/Users/farros/Downloads/Rakamin-MagangHub/CaseStudy/knowledge-layer-prototype",
+        "worktreePath": "/Users/farros/Downloads/Rakamin-MagangHub/CaseStudy/knowledge-layer-prototype",
+        "branch": "",
+        "tabId": "a10c3bac-894e-4062-b640-636f01554740",
+        "leafId": "3beacb3e-012f-48ec-be56-3b3d7d29044d",
+        "title": "⚠ Action Required - ⠸ - Running: Write `/Users/farros/Downloads… - Two-source retrieval business process de… - grok",
+        "connected": true,
+        "writable": true,
+        "lastOutputAt": 1794317434111,
+        "preview": "◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆ 4◆◆◆◆◆◆◆ 7◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆ 5◆◆◆◆◆◆◆ 8◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆ 6◆◆◆◆◆ 9◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆ 7◆◆◆◆◆◆◆ 50◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆ 8◆◆◆◆◆◆ 1◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆ 9◆◆◆◆◆◆◆ 2◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆ 50◆◆◆◆◆◆3◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆ 1◆◆◆◆◆◆◆ 4◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆ 2◆◆◆◆◆◆◆ 5◆◆◆◆◆◆◆◆◆◆◆◆◆◆",
+        "executionHostId": "local",
+        "agentIdentity": "grok"
+      },
+      {
+        "handle": "term_a5a7b89e-99eb-40f2-9416-66cee3248fa9",
+        "ptyId": "4b1cf78e-ea28-4880-896c-4d94acc87046::/Users/farros/Downloads/Rakamin-MagangHub/CaseStudy/knowledge-layer-prototype@@95f7d600",
+        "incarnationId": "9b2f2b02-37e3-4601-843d-9adc7e3a30a0",
+        "orphaned": false,
+        "worktreeId": "4b1cf78e-ea28-4880-896c-4d94acc87046::/Users/farros/Downloads/Rakamin-MagangHub/CaseStudy/knowledge-layer-prototype",
+        "worktreePath": "/Users/farros/Downloads/Rakamin-MagangHub/CaseStudy/knowledge-layer-prototype",
+        "branch": "",
+        "tabId": "23d8e334-ea6e-4f8d-8403-940b0b3ec6e0",
+        "leafId": "15247559-9049-44c0-9a9f-a8506a20a966",
+        "title": "Business process B RAG two-source retrie… - grok",
+        "connected": true,
+        "writable": true,
+        "lastOutputAt": 1794316775600,
+        "preview": "ilihat wajib lewat6 ekstraksi model⠴ yang kutipannya dival7idasi. Graf,embedding, premis, dan sintesis tidak masuk irisan ini.⠦707028⠧930⠋13⠙2unnig 5 stop hooks… 0.3s4⠹5⠸6⠼78⠴9⠦101⠧24⠋3⠙45⠹6⠸7⠼89⠴20⠦125⠧3⠋4⠙56⠹7⠸8espoding… 0.0s1⠼2⠴3⠦46Worked for 29m56s                                      xshortcuts",
+        "executionHostId": "local",
+        "agentIdentity": "grok"
+      },
+      {
+        "handle": "term_7ef1ead1-7f93-4c5e-acf7-6428c2a3dc1c",
+        "ptyId": "4b1cf78e-ea28-4880-896c-4d94acc87046::/Users/farros/Downloads/Rakamin-MagangHub/CaseStudy/knowledge-layer-prototype@@65905d35",
+        "incarnationId": "9ba17126-4377-42c2-a533-11c3e4a404e1",
+        "orphaned": false,
+        "worktreeId": "4b1cf78e-ea28-4880-896c-4d94acc87046::/Users/farros/Downloads/Rakamin-MagangHub/CaseStudy/knowledge-layer-prototype",
+        "worktreePath": "/Users/farros/Downloads/Rakamin-MagangHub/CaseStudy/knowledge-layer-prototype",
+        "branch": "",
+        "tabId": "a46101a1-e2c3-4110-b3ca-0dd8e34dd510",
+        "leafId": "b2965edd-c126-4d88-9030-1805d5e30b93",
+        "title": "Draft bounded evaluation cases from spec - grok",
+        "connected": true,
+        "writable": true,
+        "lastOutputAt": 1794316777862,
+        "preview": ",9pembaruan dokumen, kutipan cacat, dan injeksi yang diperlakukan sebagai teks. Jawaban business-processA/B tidak dibaca.⠹31033⠸12⠼3⠴4unnig 5 stop hooks… 0.3s420⠦5⠧6⠋78⠙9⠹101⠸2⠼3⠴415⠦6⠧78⠋9⠙20⠹12⠸3⠼42⠴56⠦7⠧89⠋30⠙1espoding… 0.0s1⠹2⠸33⠼4Worked for 21m23s                                      xshortcuts",
+        "executionHostId": "local",
+        "agentIdentity": "grok"
+      },
+      {
+        "handle": "term_fdd76549-be3d-4c62-b670-c97473c5e18a",
+        "ptyId": "4b1cf78e-ea28-4880-896c-4d94acc87046::/Users/farros/Downloads/Rakamin-MagangHub/CaseStudy/knowledge-layer-prototype@@1d9ed777",
+        "incarnationId": "5f10e64c-13ba-4d00-bb27-ce91a5a0a5fa",
+        "orphaned": false,
+        "worktreeId": "4b1cf78e-ea28-4880-896c-4d94acc87046::/Users/farros/Downloads/Rakamin-MagangHub/CaseStudy/knowledge-layer-prototype",
+        "worktreePath": "/Users/farros/Downloads/Rakamin-MagangHub/CaseStudy/knowledge-layer-prototype",
+        "branch": "",
+        "tabId": "87293b2e-0f07-4692-bc2c-63e59e993799",
+        "leafId": "2698cd2c-1c2a-4e95-8cdd-24a6b00f769b",
+        "title": "⠋ Grok",
+        "connected": true,
+        "writable": true,
+        "lastOutputAt": 1794317434122,
+        "preview": "◈ ◆◈ ◆◈ ◆◈ ◆◈ ◆◈ ◆◆ 2◈ ◆◈ ◆◈ ◆◈ ◆◈ ◆◈ ◆◈ ◆◈ ◆◈ ◆◈ ◆◈ ◆◈ ◆◈ ◆◈ ◆◈ ◆◈ ◆◈ ◆◈ ◆◈ ◆◈ ◆◈ ◆ 7◈ ◆◈ ◆◈ ◆◈ ◆◈ ◆◈ ◆◈ ◆◈ ◆ 3◈◈ ◆◈ ◆◈ ◆◈ ◆◈ ◆◈ ◆◈ ◆◈ ◆◈ ◆◈ ◆◈ ◆◈ ◆◈ ◆◈ ◆◈ ◆◈ ◆◈ ◆◈ ◆◈ ◆◈ 8◈ ◆◈ ◆◈ ◆◈ ◆◈ ◆◈ ◆◈ ◆ 4◈ ◆◈ ◆◈ ◆◈ ◆◈ ◆◈ ◆◈ ◆◈ ◆◈ ◆◈ ◆◈ ◆◈ ◆◈ ◆◈ ◆◈ ◆◈ ◆◈ ◆◈ ◆◈ ◆◈ ◆◈ ◆◈ ◆ 9◈ ◆◈ ◆◈ ◆◈ ◆◈ ◆◈ ◆◈ ◆ 5◈ ◆◈ ◆◈◈ ◆◈ ◆",
+        "executionHostId": "local",
+        "agentIdentity": "grok"
+      }
+    ],
+    "hostScope": {
+      "hostIds": [
+        "local"
+      ],
+      "omittedHostIds": []
+    },
+    "topologyRevisions": {
+      "4b1cf78e-ea28-4880-896c-4d94acc87046::/Users/farros/Downloads/Rakamin-MagangHub/CaseStudy/knowledge-layer-prototype": 19
+    },
+    "totalCount": 7,
+    "truncated": false
+  },
+  "_meta": {
+    "runtimeId": "9e0182b4-5c13-4227-86a6-054557721cdb"
+  }
+}

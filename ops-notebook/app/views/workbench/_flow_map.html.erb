@@ -1,0 +1,172 @@
+<section class="flow-map" aria-label="Peta alur lengkap">
+  <h2>Peta alur</h2>
+  <p>Dari dump sampai tanya, yang menjalankan adalah Rails, PostgreSQL, dan aturan lokal. Gemini atau model lain belum dipasang. Lima langkah pemakaian di bawah tetap. Yang boleh diganti nanti adalah mesin di belakang satu tahap, setelah uji pada pertanyaan yang sama.</p>
+  <h3>Alur penggunaan</h3>
+  <ol class="biz usecase">
+    <li><span>1</span><strong>Notebook</strong><small>Satu ruang kerja</small></li>
+    <li><span>2</span><strong>Rekaman</strong><small>Diisi sendiri, terpisah dari berkas</small></li>
+    <li><span>3</span><strong>Unggah</strong><small>Teks, PDF berlapis, DOCX. Pindai ditahan</small></li>
+    <li><span>4</span><strong>Jenis</strong><small>Tiga penilai. Other bila tidak sepakat</small></li>
+    <li><span>5</span><strong>Tanya</strong><small>Rute dan kutipan, atau abstain</small></li>
+  </ol>
+  <div class="routes">
+    <article>
+      <small>Rekaman saja</small>
+      <strong>Status yang tercatat</strong>
+      <p>Budi tidak mengambil baris Budiono.</p>
+    </article>
+    <article>
+      <small>Dokumen saja</small>
+      <strong>Apa yang tertulis</strong>
+      <p>Rencana bukan kejadian. Negasi tetap menempel.</p>
+    </article>
+    <article>
+      <small>Gabungan</small>
+      <strong>Id publik yang sama</strong>
+      <p>Nama yang mirip bukan sambungan.</p>
+    </article>
+    <article>
+      <small>Abstain</small>
+      <strong>Tidak ada baris</strong>
+      <p>Pertanyaan di luar operasi tidak dijawab dengan tebakan.</p>
+    </article>
+  </div>
+  <article class="plan">
+    <div class="plan-top">
+      <strong>Use case berat: 150 PDF</strong>
+      <span class="pill">Klasifikasi saat dump</span>
+    </div>
+    <p>Seratus lima puluh PDF masuk sekaligus. Masing-masing bisa puluhan halaman. PDF #3 dan PDF #7 bisa saling menolak. PDF #5 bisa memuat bukti yang menguatkan isi PDF #9. Pekerjaan itu selesai sebelum ada pertanyaan.</p>
+    <div class="story" aria-label="Animasi klasifikasi 150 PDF saat dump">
+      <div class="captions">
+        <p>150 PDF masuk sekaligus. Klasifikasi berjalan saat dump, bukan saat ditanya.</p>
+        <p>PDF #3 dan PDF #7 tidak sepakat. Keduanya tetap tersimpan sebagai bentrok.</p>
+        <p>PDF #5 menguatkan PDF #9. Dukungan menyimpan jejak kedua berkas.</p>
+        <p>Tanya membaca struktur ini. Verifikasi diulang, lalu halaman asli bisa dibuka.</p>
+      </div>
+      <div class="story-board">
+        <div class="story-col dump-col">
+          <p class="story-label">Dump</p>
+          <div class="sheets">
+            <% [["#1", "12 hal."], ["#3", "28 hal."], ["#5", "16 hal."], ["#7", "41 hal."], ["#9", "22 hal."], ["#150", "35 hal."]].each_with_index do |(label, pages), index| %>
+              <div class="sheet" style="--i: <%= index %>">
+                <b>PDF <%= label %></b>
+                <small><%= pages %></small>
+                <i></i><i></i><i></i>
+              </div>
+            <% end %>
+          </div>
+          <div class="scan" aria-hidden="true"></div>
+        </div>
+        <div class="story-col struct-col">
+          <p class="story-label">Struktur tersimpan</p>
+          <div class="claim conflict-a">
+            <b>PDF #3 · hal. 4</b>
+            <span>Pilot direncanakan 15 November.</span>
+          </div>
+          <div class="claim conflict-b">
+            <b>PDF #7 · hal. 2</b>
+            <span>Pilot direncanakan 1 Desember.</span>
+          </div>
+          <p class="mark conflict">Bentrok</p>
+          <div class="claim support-a">
+            <b>PDF #9 · hal. 11</b>
+            <span>Anggaran pilot 40 juta.</span>
+          </div>
+          <div class="claim support-b">
+            <b>PDF #5 · hal. 6</b>
+            <span>Lampiran menyetujui 40 juta.</span>
+          </div>
+          <p class="mark support">Dukungan</p>
+          <div class="claim dropped">
+            <b>Tanpa halaman</b>
+            <span>Pilot pasti sudah berjalan.</span>
+          </div>
+        </div>
+      </div>
+      <ol class="checks">
+        <li>Kutipan masih ada di halaman itu.</li>
+        <li>Yang diambil kalimat utuh, bukan sekata.</li>
+        <li>Tanpa sumber dibuang. Bentrok dan dukungan tetap.</li>
+      </ol>
+    </div>
+    <ol class="map dense">
+      <li>
+        <span>A</span>
+        <div>
+          <strong>Dump menyimpan bagian</strong>
+          <p>Tiap halaman dibaca, lalu disimpan bersama nama berkas dan lokasi. Pindai yang tidak punya teks ditahan, tidak dijadikan halaman kosong yang lolos.</p>
+        </div>
+      </li>
+      <li>
+        <span>B</span>
+        <div>
+          <strong>Klasifikasi menulis klaim</strong>
+          <p>Tiap informasi menjadi klaim: subjek, predikat, polaritas, modalitas, berkas, dan halaman. Jenis dokumen hanya memilih kolom. Jenis bukan kebenaran.</p>
+        </div>
+      </li>
+      <li>
+        <span>C</span>
+        <div>
+          <strong>Lintas berkas</strong>
+          <p>Dua klaim yang tidak bisa sama-sama benar menjadi bentrok, misalnya PDF #3 dan PDF #7. Klaim di PDF #5 yang menguatkan klaim di PDF #9 menjadi dukungan. Jejak kedua berkas tetap.</p>
+        </div>
+      </li>
+      <li>
+        <span>D</span>
+        <div>
+          <strong>Struktur disimpan</strong>
+          <p>Rumah struktur boleh baris, vektor, atau penyimpanan lain. Vektor membantu mencari calon. Vektor tidak memutuskan bentrok. Yang ditanya kemudian adalah struktur ini, bukan 150 berkas mentah.</p>
+        </div>
+      </li>
+      <li>
+        <span>E</span>
+        <div>
+          <strong>Tanya membaca hasil</strong>
+          <p>Pertanyaan tidak mengklasifikasi ulang seluruh korpus. Ia membaca klaim, bentrok, dan dukungan yang sudah tersimpan.</p>
+        </div>
+      </li>
+      <li>
+        <span>F</span>
+        <div>
+          <strong>Verifikasi, lebih dari sekali</strong>
+          <p>Sekali: kutipan masih ada di halaman itu. Kali kedua: yang diambil kalimat utuh, bukan sekata yang kebetulan sama. Kali ketiga: klaim tanpa sumber dibuang, bentrok dan dukungan tetap terlihat. Lalu halaman asli bisa dibuka.</p>
+        </div>
+      </li>
+    </ol>
+    <p class="muted">Yang berjalan hari ini berhenti lebih awal. Klasifikasi aturan terjadi di dalam permintaan unggah. Bentrok yang dikenali baru tanggal pilot yang berbeda dan kehadiran yang polaritasnya berlawanan. Belum ada relasi “PDF #5 menguatkan PDF #9”. Tanya masih irisan kata. Verifikasi masih satu cek: kutipan ada di teks. Seratus lima puluh PDF besar belum muat di jalur ini, karena tidak ada antrian dan irisan kata mudah mengambil konteks yang terpotong.</p>
+  </article>
+  <div class="split">
+    <article>
+      <h3>Yang membuatnya bekerja</h3>
+      <ul>
+        <li>Rails menerima unggahan, menyimpan, dan menjawab di dalam satu aplikasi.</li>
+        <li>PostgreSQL menyimpan rekaman, berkas, bagian, jenis, isian, dan klaim.</li>
+        <li>Aturan lokal menimbang jenis, menandai bentrok, mengecek kutipan, dan mencari baris.</li>
+      </ul>
+    </article>
+    <article class="later-box">
+      <h3>Yang belum dipasang</h3>
+      <ul>
+        <li>Antrian latar, akun, OCR, transkrip, PPTX, dan pemotongan berkas besar. Lapisan teks PDF dan XML DOCX sudah dibaca.</li>
+        <li>Model seperti Gemini. Nanti ia hanya boleh mengembalikan maksud tertutup. Rails yang menyusun kueri. Model tidak menulis SQL.</li>
+        <li>RAG, late chunking, LightRAG, GraphRAG, dan EAGR. Angka penulis bukan hasil aplikasi ini.</li>
+      </ul>
+    </article>
+  </div>
+  <ol class="map">
+    <% ApplicationHelper::PIPELINE.each_with_index do |stage, index| %>
+      <li>
+        <span><%= index + 1 %></span>
+        <div>
+          <strong><%= stage[:title] %></strong>
+          <p><b>Dipakai.</b> <%= stage[:uses] %>. <%= stage[:how] %></p>
+          <p><b>Tetap.</b> <%= stage[:hold] %></p>
+          <p><b>Macet.</b> <%= stage[:stuck] %></p>
+          <p><b>Perbaikan.</b> <%= stage[:improve] %></p>
+          <p><b>Nanti.</b> <%= stage[:later] %></p>
+        </div>
+      </li>
+    <% end %>
+  </ol>
+</section>

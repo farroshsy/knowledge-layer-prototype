@@ -1,0 +1,66 @@
+<% focus = @documents.find { |document| document.id == params[:berkas].to_i } %>
+
+<section>
+  <h2>Analisis</h2>
+  <p class="muted">Jenis file dari ekstensi. Jenis isi dari kata di dalam bagian. Baris struktur adalah isian yang tersimpan, masih menempel pada kutipan. Kolom yang tidak tertulis di berkas tidak dibuat. Bagan lengkapnya ada di <%= link_to "Proses", notebook_proses_path(@notebook) %>.</p>
+  <% if @documents.empty? %>
+    <p class="muted">Belum ada berkas. <%= link_to "Dump dulu", root_path(notebook_id: @notebook.id) %>.</p>
+  <% elsif focus.nil? %>
+    <% @documents.each do |document| %>
+      <% categories = document.sections.filter_map { |section| section.active_classification&.category }.uniq %>
+      <% field_count = document.sections.sum { |section| section.extracted_fields.count { |field| field.state == "active" } } %>
+      <article class="card">
+        <p><strong><%= document.filename %></strong></p>
+        <p>jenis file · <%= file_kind(document.filename) %> · <%= document.body.to_s.split.size %> kata · <%= document.sections.size %> bagian</p>
+        <p>Jenis isi: <%= categories.join(", ").presence || "belum ada" %></p>
+        <p><%= field_count %> baris struktur</p>
+        <p><%= link_to "Buka berkas ini", notebook_analisis_path(@notebook, berkas: document.id) %></p>
+      </article>
+    <% end %>
+  <% else %>
+    <p><%= link_to "Semua berkas", notebook_analisis_path(@notebook) %></p>
+    <% job = focus.jobs.max_by(&:id) %>
+    <article class="card">
+      <p>
+        <strong><%= focus.filename %></strong>
+        <span class="pill">jenis file · <%= file_kind(focus.filename) %></span>
+      </p>
+      <p class="muted">Proses tersimpan: <%= job&.provider_label || "local-rules" %> · <%= job&.status || "completed" %>.</p>
+      <% focus.sections.sort_by(&:ordinal).each do |section| %>
+        <% classification = section.active_classification %>
+        <% active_fields = section.extracted_fields.select { |field| field.state == "active" } %>
+        <h3>Bagian <%= section.ordinal %></h3>
+        <p>Jenis isi: <strong><%= classification&.category %></strong> · metode <%= classification&.method %> · <%= classification&.reason %></p>
+        <% if active_fields.any? %>
+          <table>
+            <caption>Baris struktur</caption>
+            <thead>
+              <tr><th>Isian</th><th>Nilai</th><th>Kutipan</th></tr>
+            </thead>
+            <tbody>
+              <% active_fields.each do |field| %>
+                <tr>
+                  <td><%= field.name %></td>
+                  <td><%= field.value %></td>
+                  <td class="quote"><%= field.quote %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        <% else %>
+          <p class="muted">Tidak ada isian pada bagian ini.</p>
+        <% end %>
+        <div class="chips">
+          <% Evidence::CATEGORIES.each do |category| %>
+            <%= button_to category, section_correction_path(section), method: :post, params: { category: category }, class: "chip#{classification&.category == category ? " on" : ""}" %>
+          <% end %>
+        </div>
+        <details>
+          <summary>Teks sumber bagian <%= section.ordinal %></summary>
+          <p class="quote"><%= section.body_text %></p>
+        </details>
+      <% end %>
+      <%= button_to "Proses ulang", reprocess_document_path(focus), method: :post %>
+    </article>
+  <% end %>
+</section>

@@ -1,0 +1,45 @@
+<section>
+  <h2>Pemetaan berkas</h2>
+  <p class="muted">Desain pada halaman bukan alasan untuk OCR. OCR hanya untuk halaman yang tidak punya lapisan teks. OCR itu belum dijalankan. PDF dan DOCX yang sudah punya teks diubah menjadi teks bagian, tanpa dijadikan gambar lebih dulu.</p>
+  <table>
+    <caption>Jalur sebelum penilai</caption>
+    <thead>
+      <tr><th>Bentuk</th><th>Jalur</th><th>Status di prototipe ini</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Teks polos kecil</td><td>Langsung dipecah pada baris kosong</td><td>Berjalan, tanpa OCR</td></tr>
+      <tr><td>PDF yang punya lapisan teks</td><td>Teks per halaman. Urutan dalam halaman mengikuti aliran berkas, belum kolom atau tabel</td><td>Berjalan. OCR tidak dipakai</td></tr>
+      <tr><td>Halaman pindaian atau gambar</td><td>OCR per halaman, lalu urutan baca</td><td>Ditahan. OCR belum dijalankan</td></tr>
+      <tr><td>DOCX</td><td>Teks dari XML paragraf, sesuai urutan berkas</td><td>Berjalan. Bukan OCR</td></tr>
+      <tr><td>PPTX atau ODT</td><td>Teks dari XML dan urutan bentuk</td><td>Ditahan. Belum dibaca</td></tr>
+      <tr><td>Teks di atas 200000 karakter</td><td>Potong per halaman atau per blok dulu</td><td>Ditahan. Isi tidak disimpan</td></tr>
+      <tr><td>Audio atau video</td><td>Transkrip</td><td>Ditahan. Bukan OCR</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h2>Berkas yang masuk</h2>
+  <% if @intakes.empty? && @documents.empty? %>
+    <p class="muted">Belum ada berkas. <%= link_to "Dump dulu", root_path(notebook_id: @notebook.id) %>.</p>
+  <% end %>
+  <% if @intakes.empty? %>
+    <% @documents.each do |document| %>
+      <article class="card">
+        <p><strong><%= document.filename %></strong> <span class="pill">teks polos · langsung</span></p>
+        <p class="muted">Masuk sebelum catatan pemetaan. Tidak lewat OCR.</p>
+      </article>
+    <% end %>
+  <% end %>
+  <% @intakes.each do |intake| %>
+    <article class="card">
+      <p>
+        <strong><%= intake.filename %></strong>
+        <span class="pill"><%= intake.physical_kind %></span>
+        <span class="pill"><%= intake.route %></span>
+        <span class="pill"><%= intake.status == "mapped" ? "dipetakan" : "ditahan" %></span>
+      </p>
+      <p><%= intake.reason %></p>
+    </article>
+  <% end %>
+</section>

@@ -1,0 +1,72 @@
+<section>
+  <h2>Tanya</h2>
+  <p class="muted">Bentuknya percakapan. Pertanyaan mencari isian dan klaim pada judul bagian, lalu jawaban hanya mengulang baris itu. Kalau barisnya tidak ada, sistem menolak. Model belum dipasang.</p>
+  <div class="chat">
+    <% if @question.present? %>
+      <p class="bubble me"><%= @question %></p>
+    <% end %>
+    <% if @result %>
+      <article class="bubble bot">
+        <p><strong><%= @result.answer %></strong></p>
+        <p>Rute: <%= @result.route %> · metode <%= @result.method %> · semantic <%= @result.semantic %></p>
+        <p><%= @result.reason %></p>
+        <% if @result.records.any? %>
+          <p>Rekaman: <%= @result.records.map { |row| "#{row.display_name} (#{row.public_id})" }.join(", ") %></p>
+        <% end %>
+        <% if @result.rows.present? %>
+          <table>
+            <caption>Baris terstruktur</caption>
+            <thead>
+              <tr><th>Berkas</th><th>Judul bagian</th><th>Jenis</th><th>Isi</th></tr>
+            </thead>
+            <tbody>
+              <% @result.rows.each do |row| %>
+                <tr>
+                  <td><%= row.filename %></td>
+                  <td><%= row.heading.presence || "—" %></td>
+                  <td><%= row.kind %></td>
+                  <td class="quote"><%= row.kind == "isian" ? "#{row.name}: #{row.value}" : row.quote %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        <% end %>
+        <table>
+          <caption>Baris yang diambil</caption>
+          <thead>
+            <tr><th>Berkas</th><th>Kutipan</th><th>Polaritas</th><th>Modalitas</th></tr>
+          </thead>
+          <tbody>
+            <% if @result.claims.empty? %>
+              <tr><td colspan="4">Tidak ada baris klaim yang diambil.</td></tr>
+            <% end %>
+            <% @result.claims.each do |claim| %>
+              <tr>
+                <td><%= claim.document.filename %></td>
+                <td class="quote"><%= claim.quote %></td>
+                <td><%= claim.polarity %></td>
+                <td><%= claim.modality %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </article>
+    <% else %>
+      <p class="bubble bot">Dump berkas dulu. Pertanyaan membaca jenis isi, isian, dan klaim yang sudah tersimpan.</p>
+    <% end %>
+    <div class="suggest">
+      <% ["Apa status pilot?", "Apakah pilot sudah berjalan?", "Apakah Budi hadir?"].each do |preset| %>
+        <%= form_with url: notebook_query_path(@notebook), method: :post do |form| %>
+          <%= form.hidden_field :question, value: preset %>
+          <%= form.submit preset, class: "chip" %>
+        <% end %>
+      <% end %>
+    </div>
+    <%= form_with url: notebook_query_path(@notebook), method: :post, html: { class: "composer" } do |form| %>
+      <%= form.label :question, "Pertanyaan" %>
+      <%= form.text_field :question, value: @question, required: true %>
+      <%= form.submit "Tanya" %>
+    <% end %>
+  </div>
+  <p><%= link_to "Periksa kutipannya di verifikasi", notebook_verifikasi_path(@notebook) %></p>
+</section>

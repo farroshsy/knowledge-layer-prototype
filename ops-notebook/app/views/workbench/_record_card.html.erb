@@ -1,0 +1,21 @@
+<article class="card">
+  <p><strong><%= record.display_name %></strong> · <%= record.kind %> · <span class="pill"><%= record.status %></span></p>
+  <p class="muted"><code><%= record.public_id %></code></p>
+  <% linked = @claims.select { |claim| claim.quote.include?(record.public_id) && !claim.blocked? } %>
+  <% if linked.any? %>
+    <ul>
+      <% linked.each do |claim| %>
+        <li><%= claim.quote %> · <%= review_badge(claim) %></li>
+      <% end %>
+    </ul>
+  <% elsif record.kind == "work_item" %>
+    <p class="muted">Tidak ada kutipan aktif yang memuat id pekerjaan ini.</p>
+  <% end %>
+  <%= form_with url: record_status_path(record), method: :post do |form| %>
+    <%= form.label :status, "Status baru" %>
+    <%= form.select :status, BusinessRecord::STATUSES, selected: record.status %>
+    <%= form.label :note, "Catatan keputusan" %>
+    <%= form.text_field :note, required: true %>
+    <%= form.submit "Catat status" %>
+  <% end %>
+</article>

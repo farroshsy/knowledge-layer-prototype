@@ -1,0 +1,40 @@
+<% chosen = params[:berkas].to_i %>
+<% rows = chosen.positive? ? @claims.select { |claim| claim.document_id == chosen } : [] %>
+<% held = @claims.count { |claim| quote_held?(claim) } %>
+
+<section>
+  <h2>Verifikasi</h2>
+  <p class="muted">Setiap klaim dicek lagi hanya terhadap teks sumbernya. Pemeriksaan ini tidak membaca jenis berkas dan tidak menganggap kemiripan topik sebagai dukungan. Anda yang menerima, menolak, atau meminta bukti tambahan.</p>
+  <p>Kutipan masih ada di teks sumber. <%= held %> dari <%= @claims.size %> klaim lolos pemeriksaan ini.</p>
+  <% if chosen.zero? %>
+    <ul class="filelist">
+      <% @documents.each do |document| %>
+        <li>
+          <%= link_to document.filename, notebook_verifikasi_path(@notebook, berkas: document.id) %>
+          <span class="pill"><%= document.claims.count { |claim| claim.state == "active" } %> klaim</span>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p><%= link_to "Semua berkas", notebook_verifikasi_path(@notebook) %></p>
+  <% end %>
+  <% if rows.empty? %>
+    <p class="muted">Belum ada klaim pada pilihan ini.</p>
+  <% end %>
+  <% rows.each do |claim| %>
+    <article class="card">
+      <p><strong><%= claim.document.filename %></strong> · <%= review_badge(claim) %></p>
+      <p class="quote"><%= claim.quote %></p>
+      <p><%= quote_held?(claim) ? "Kutipan masih ada di teks sumber." : "Kutipan tidak ada di teks sumber." %></p>
+      <%= form_with url: claim_decision_path(claim), method: :post do |form| %>
+        <%= form.label :decision, "Keputusan" %>
+        <%= form.select :decision, [["diterima", "accepted"], ["ditolak", "rejected"], ["bukti kurang", "needs_evidence"]] %>
+        <%= form.label :note, "Catatan" %>
+        <%= form.text_field :note, required: true %>
+        <%= form.submit "Simpan tinjauan" %>
+      <% end %>
+    </article>
+  <% end %>
+</section>
+
+<%= render "trail" %>
