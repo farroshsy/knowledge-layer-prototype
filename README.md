@@ -10,6 +10,6 @@ bin/rails db:prepare
 bin/ops
 ```
 
-Buka http://127.0.0.1:3000 dan pilih **Buka contoh produk**.
+Buka http://127.0.0.1:3000 dan pilih **Buka contoh produk**. Langkah lengkap ada di [PENGGUNAAN.md](PENGGUNAAN.md). Docker Compose belum disediakan.
 
 `klayer/`, `automation/`, dan `data/*.sqlite` adalah sisa jalur Python. Jangan dijadikan aplikasi. Catatan riset di `research/` dan `council/` tetap arsip, bukan cara menjalankan produk.
