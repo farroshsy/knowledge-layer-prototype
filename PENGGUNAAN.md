@@ -60,7 +60,8 @@ Di halaman **Dump**, seret berkas atau tempel teks lalu klik **Unggah berkas**.
 - `.txt`, `.md`, dan `.markdown` yang kecil langsung dipecah menjadi bagian, jenis, isian, dan klaim.
 - Nama berkas harus label, misalnya `notulen-maret.md`. Jangan jalur seperti `folder/berkas.md`.
 - Teks yang sama tidak disimpan dua kali.
-- PDF, gambar, DOCX, PPTX, audio, video, dan teks di atas 200.000 karakter muncul di **Pemetaan** dengan status ditahan. Isinya tidak dibaca. OCR, lapisan teks, dan transkrip belum dijalankan.
+- PDF yang punya lapisan teks diubah menjadi teks per halaman. DOCX diubah dari XML paragraf. Sistem tidak menjadikan berkas itu gambar, dan tidak menjalankan OCR.
+- Gambar, PPTX, audio, video, PDF tanpa lapisan teks, dan teks polos di atas 200.000 karakter muncul di **Pemetaan** dengan status ditahan. Isinya tidak dibaca.
 - Koreksi jenis ada di **Analisis**. Pilih jenis bagian, atau klik **Proses ulang**. Koreksi orang tidak ditimpa proses ulang.
 - Menerima atau menolak klaim ada di **Verifikasi**. Klaim yang ditolak tidak dipakai untuk menjawab.
 

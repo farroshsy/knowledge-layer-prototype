@@ -22,12 +22,12 @@ Halaman Proses menampilkan peta dari dump sampai tanya. Tiap tahap menyebut apa 
 
 Yang membuatnya bekerja hari ini: Rails, PostgreSQL, dan aturan lokal. Gemini atau model lain belum dipasang. Kalau dipasang nanti, model hanya mengembalikan maksud tertutup. Rails yang menyusun kueri. Jawaban yang tidak menempel pada kutipan ditolak.
 
-Macet terbesar ada di pemetaan: PDF, OCR, dokumen kantor, rekaman, dan berkas besar ditahan karena pembacanya belum ada. Macet di tanya: pencarian masih irisan kata, jadi beda susunan kalimat bisa tidak ketemu.
+PDF yang punya lapisan teks dan DOCX yang punya XML sudah dibaca menjadi teks. Yang masih macet di pemetaan: halaman gambar, OCR, PPTX, rekaman, dan berkas teks yang terlalu besar. Macet di tanya: pencarian masih irisan kata, jadi beda susunan kalimat bisa tidak ketemu.
 
 ## Cara kerja, halaman demi halaman
 
 1. **Dump.** Taruh banyak TXT atau Markdown.
-2. **Pemetaan.** Sistem melihat bentuk fisiknya dulu. Teks polos kecil langsung masuk. PDF yang punya teks harus lewat lapisan teks dan urutan baca, misalnya kolom dan tabel. OCR hanya untuk halaman yang berupa gambar. Audio butuh transkrip. Berkas di atas 200 ribu karakter harus dipotong dulu. Jalur yang belum ada ditahan, bukan dikira-kira isinya.
+2. **Pemetaan.** Teks polos kecil langsung masuk. PDF yang punya lapisan teks diambil per halaman. DOCX diambil dari XML paragraf. Urutan kolom dan tabel belum disusun ulang. OCR hanya untuk halaman yang berupa gambar, dan OCR itu belum dijalankan. Audio butuh transkrip. Berkas teks di atas 200 ribu karakter ditahan. Jalur yang belum ada ditahan, bukan dikira-kira isinya.
 3. **Proses.** Tiga penilai berjalan sendiri-sendiri: kata di dalam teks, baris isian seperti `Peserta:` atau `Langkah:`, dan nama berkas.
 4. **Analisis.** Tiap bagian punya jenis dan baris struktur. Judul bagian ikut tersimpan, supaya chat tidak membaca satu gumpalan.
 5. **Keputusan.** Bentrok tetap kelihatan. Rencana tidak dijadikan kejadian. Klaim yang ditolak tidak dipakai.
@@ -54,9 +54,9 @@ Yang sudah jalan adalah versi jujurnya untuk teks polos: dump, pemetaan, penilai
 
 Yang belum:
 
-- PDF digital belum dibuka, jadi lapisan teks dan urutan baca belum ada.
-- OCR untuk pindaian belum ada.
-- Dokumen kantor berdesain, seperti DOCX atau PPTX, belum dibaca dari XML-nya.
+- PDF digital yang punya lapisan teks sudah diambil per halaman. Urutan kolom dan tabel belum disusun ulang.
+- OCR untuk pindaian belum ada. PDF tanpa lapisan teks ditahan.
+- DOCX sudah dibaca dari XML paragraf. PPTX belum.
 - Audio dan video belum ditranskrip.
 - Berkas besar belum dipotong per halaman.
 - Belum ada model. Penilai, keputusan, dan verifikasi masih aturan. `semantic` selalu false.
@@ -66,7 +66,7 @@ Yang belum:
 
 ## Yang akan diperbaiki, berurutan
 
-1. PDF yang punya lapisan teks: ambil teks dan urutan bacanya. OCR hanya untuk halaman kosong.
+1. OCR hanya untuk halaman PDF yang tidak punya lapisan teks. Susun urutan kolom dan tabel.
 2. Potong berkas besar per halaman sebelum penilai.
 3. Kalau isi abstain dan nama berkas konsisten, nama boleh menjadi penanda lemah, tetap terlihat, tetap bisa dikoreksi satu klik.
 4. Model nanti hanya boleh mengembalikan maksud tertutup. Rails yang menyusun query. Model tidak menulis SQL.

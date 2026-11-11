@@ -8,6 +8,8 @@ module Evidence
         raise Error.new("validation", "nama berkas harus label, bukan jalur")
       end
 
+      return read_text_layer(notebook, filename, body, byte_size) if text_layer?(filename)
+
       plan = Lexicon.intake_plan(filename, body, byte_size)
       if plan[:status] == "mapped"
         document = upload(notebook, filename, body)
@@ -18,8 +20,8 @@ module Evidence
       notebook.intakes.create!(plan.merge(filename: filename, byte_size: byte_size || body.to_s.bytesize))
     end
 
-    def upload(notebook, filename, body)
-      validate!(filename, body)
+    def upload(notebook, filename, body, character_limit: 200_000)
+      validate!(filename, body, character_limit: character_limit)
       parsed = Lexicon.sections(body)
       raise Error.new("validation", "dokumen tidak punya bagian teks") if parsed.empty?
 
@@ -84,9 +86,46 @@ module Evidence
 
     private
 
-    def validate!(filename, body)
+    def text_layer?(filename)
+      %w[.pdf .docx].include?(File.extname(filename.to_s).downcase)
+    end
+
+    def read_text_layer(notebook, filename, body, byte_size)
+      binary = body.to_s.dup.force_encoding(Encoding::ASCII_8BIT)
+      if binary.empty?
+        plan = Lexicon.intake_plan(filename, "", byte_size)
+        return notebook.intakes.create!(plan.merge(filename: filename, byte_size: byte_size || 0))
+      end
+
+      result = Readers.extract(filename, binary)
+      kind = File.extname(filename).downcase == ".pdf" ? "pdf" : "designed"
+      route = File.extname(filename).downcase == ".pdf" ? "text_layer_or_ocr" : "text_layer"
+      if result[:status] == "mapped"
+        document = upload(notebook, filename, result[:text], character_limit: Readers::MAX_TEXT)
+        return notebook.intakes.create!(
+          physical_kind: kind,
+          route: route,
+          status: "mapped",
+          reason: result[:reason],
+          document: document,
+          filename: filename,
+          byte_size: binary.bytesize
+        )
+      end
+
+      notebook.intakes.create!(
+        physical_kind: kind,
+        route: route,
+        status: "blocked",
+        reason: result[:reason],
+        filename: filename,
+        byte_size: binary.bytesize
+      )
+    end
+
+    def validate!(filename, body, character_limit: 200_000)
       raise Error.new("validation", "teks dokumen kosong") if body.blank?
-      raise Error.new("validation", "dokumen lebih dari 200000 karakter") if body.length > 200_000
+      raise Error.new("validation", "dokumen lebih dari #{character_limit} karakter") if body.length > character_limit
       if filename.blank? || filename.include?("/") || filename.include?("\\") || filename.start_with?(".")
         raise Error.new("validation", "nama berkas harus label, bukan jalur")
       end

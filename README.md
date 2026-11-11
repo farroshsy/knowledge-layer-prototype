@@ -112,7 +112,7 @@ Langkah: Cuci bahan.
 
 Kata menunjuk ke notulen, baris `Langkah:` menunjuk ke SOP. Keduanya berselisih, jadi jenisnya `other` dan alasannya memuat `konsensus gagal`. Lihat di **Analisis**.
 
-Satu berkas `.pdf` apa saja. Ia tidak dibaca. Di **Pemetaan** statusnya ditahan, dengan alasan lapisan teks dan OCR belum dijalankan.
+Satu berkas `.pdf` yang hanya berupa gambar, atau satu `.pptx`. Keduanya ditahan di **Pemetaan**. PDF yang punya lapisan teks dan DOCX yang punya paragraf XML dibaca. OCR tidak dijalankan.
 
 ### 3. Baru baca penjelasan di bawah
 
@@ -173,20 +173,21 @@ Yang berjalan: Rails di dalam satu aplikasi, PostgreSQL untuk rekaman dan baris 
 Yang masih macet:
 
 - Tidak ada antrian. Pemrosesan selesai di dalam permintaan yang sama.
-- Pemetaan adalah macet terbesar. PDF, gambar, dokumen kantor, rekaman, dan teks di atas 200.000 karakter ditahan. Lapisan teks, OCR, XML, transkrip, dan pemotongan belum dijalankan.
+- Gambar, rekaman, PPTX, PDF tanpa lapisan teks, dan teks polos di atas 200.000 karakter ditahan. OCR, transkrip, dan urutan kolom belum dijalankan. PDF yang punya lapisan teks dan DOCX yang punya XML sudah diubah menjadi teks bagian.
 - Prosa yang tidak berbentuk `Nama: nilai` tidak menjadi isian.
 - Bentrok yang dikenali masih sempit: tanggal pilot yang berbeda, dan kehadiran yang saling menolak.
 - Tanya memakai irisan kata, bukan makna. Chat tidak menyusun kalimat.
 - Belum ada akun.
 
-Perbaikan yang tertulis di peta, dan belum berjalan: antrian setelah data tersimpan, lapisan teks PDF dengan OCR hanya untuk halaman gambar, pemotongan berkas besar, penanda nama berkas yang lemah bila isi abstain, lalu model. Model seperti Gemini, kalau dipasang, hanya mengembalikan maksud tertutup. Rails yang menyusun kueri. Model tidak menulis SQL. Jawaban yang tidak menempel pada kutipan ditolak.
+Perbaikan yang tertulis di peta, dan belum berjalan: antrian setelah data tersimpan, OCR hanya untuk halaman gambar, urutan kolom dan tabel, pemotongan berkas besar, penanda nama berkas yang lemah bila isi abstain, lalu model. Model seperti Gemini, kalau dipasang, hanya mengembalikan maksud tertutup. Rails yang menyusun kueri. Model tidak menulis SQL. Jawaban yang tidak menempel pada kutipan ditolak.
 
 ## Kode yang disentuh bila perilaku diubah
 
 | Perilaku | Berkas |
 |---|---|
 | Unggah, hash isi, bagian, jenis, isian | `ops-notebook/app/services/evidence/ingest.rb` |
-| Penilai, kolom, jalur PDF dan OCR | `ops-notebook/app/services/evidence/lexicon.rb` |
+| Penilai dan kolom | `ops-notebook/app/services/evidence/lexicon.rb` |
+| Pembaca PDF dan DOCX | `ops-notebook/app/services/evidence/readers.rb` |
 | Pertanyaan, bentrok, gabungan id | `ops-notebook/app/services/evidence/query.rb` |
 | Halaman | `ops-notebook/app/views/workbench/` |
 | Uji alur yang harus tetap hijau | `ops-notebook/test/integration/evidence_flow_test.rb` |

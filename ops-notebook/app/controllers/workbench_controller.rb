@@ -141,7 +141,7 @@ class WorkbenchController < ApplicationController
 
     rows.filter_map do |row|
       filename = row["filename"].to_s
-      body = row["body"].to_s
+      body = row["encoding"] == "base64" ? Base64.decode64(row["body"].to_s) : row["body"].to_s
       next if filename.blank? && body.blank?
 
       [filename, body, row["byte_size"]]

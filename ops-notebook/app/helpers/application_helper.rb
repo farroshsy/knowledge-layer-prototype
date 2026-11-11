@@ -13,7 +13,9 @@ module ApplicationHelper
   FILE_KINDS = {
     ".txt" => "teks",
     ".md" => "markdown",
-    ".markdown" => "markdown"
+    ".markdown" => "markdown",
+    ".pdf" => "pdf",
+    ".docx" => "docx"
   }.freeze
 
   def quote_held?(claim)
@@ -45,10 +47,10 @@ module ApplicationHelper
     {
       key: "pemetaan",
       title: "Pemetaan",
-      uses: "Aturan ekstensi berkas",
-      how: "Teks polos kecil dilanjutkan. PDF, gambar, dokumen kantor, rekaman, dan teks panjang ditahan beserta alasannya.",
-      stuck: "Ini macet terbesar. Lapisan teks, OCR, XML, transkrip, dan pemotongan belum ada, jadi berkas itu tidak sampai ke penilai.",
-      improve: "Baca lapisan teks PDF lebih dulu. OCR hanya untuk halaman yang berupa gambar."
+      uses: "Lapisan teks PDF dan XML DOCX",
+      how: "Teks polos kecil dilanjutkan. PDF yang punya lapisan teks dan DOCX yang punya XML diubah menjadi teks bagian. Gambar, rekaman, PPTX, dan PDF tanpa teks ditahan.",
+      stuck: "OCR, transkrip, PPTX, dan urutan kolom belum ada. Halaman yang hanya berupa gambar tidak dibaca.",
+      improve: "OCR hanya untuk halaman tanpa lapisan teks. Susun urutan kolom dan tabel."
     },
     {
       key: "proses",

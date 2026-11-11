@@ -222,6 +222,7 @@ class EvidenceFlowTest < ActionDispatch::IntegrationTest
     assert_response :success
     assert_includes response.body, "OCR hanya untuk halaman yang tidak punya lapisan teks"
     assert_includes response.body, "Bukan OCR"
+    assert_includes response.body, "Berjalan. OCR tidak dipakai"
     assert_includes response.body, "Pemotongan belum dijalankan"
     assert_equal ["catatan.txt"], notebook.documents.pluck(:filename)
     assert_equal "blocked", notebook.intakes.find_by!(filename: "kontrak.pdf").status
@@ -238,5 +239,68 @@ class EvidenceFlowTest < ActionDispatch::IntegrationTest
     assert_includes found.rows.first.heading, "Notulen rapat"
     missing = Evidence.ask(notebook, "Berapa anggaran proposal?")
     assert_equal "abstain", missing.answer
+  end
+
+  test "pdf text layer and docx xml become readable rows" do
+    notebook = Notebook.create!(name: "lapisan")
+    pdf = Evidence.receive(notebook, "rapat.pdf", pdf_bytes("Notulen rapat", "Peserta: Sari"))
+    assert_equal "mapped", pdf.status
+    assert_includes pdf.reason, "Lapisan teks PDF"
+    assert_includes pdf.document.body, "Peserta: Sari"
+    assert_equal "notulen", pdf.document.sections.order(:ordinal).map { |section| section.active_classification.category }.find { |category| category == "notulen" }
+    found = Evidence.ask(notebook, "Siapa peserta notulen?")
+    assert_includes found.answer, "Peserta: Sari"
+
+    blank = Evidence.receive(notebook, "pindai.pdf", pdf_bytes)
+    assert_equal "blocked", blank.status
+    assert_nil blank.document_id
+    assert_includes blank.reason, "OCR"
+
+    docx = Evidence.receive(notebook, "rapat.docx", docx_bytes(["Notulen rapat", "Peserta: Budi"]))
+    assert_equal "mapped", docx.status
+    assert_includes docx.reason, "XML"
+    assert_includes docx.document.body, "Peserta: Budi"
+    assert_equal false, Evidence.ask(notebook, "Siapa peserta notulen?").semantic
+  end
+
+  def pdf_bytes(first = nil, second = nil)
+    stream = +"BT /F1 12 Tf"
+    stream << " 72 140 Td (#{pdf_escape(first)}) Tj" if first
+    stream << " 0 -20 Td (#{pdf_escape(second)}) Tj" if second
+    stream << " ET"
+    objects = [
+      "1 0 obj << /Type /Catalog /Pages 2 0 R >> endobj\n",
+      "2 0 obj << /Type /Pages /Count 1 /Kids [3 0 R] >> endobj\n",
+      "3 0 obj << /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 4 0 R /Resources << /Font << /F1 5 0 R >> >> >> endobj\n",
+      "4 0 obj << /Length #{stream.bytesize} >> stream\n#{stream}\nendstream\nendobj\n",
+      "5 0 obj << /Type /Font /Subtype /Type1 /BaseFont /Helvetica >> endobj\n"
+    ]
+    pdf = +"%PDF-1.4\n"
+    offsets = []
+    objects.each do |object|
+      offsets << pdf.bytesize
+      pdf << object
+    end
+    xref = pdf.bytesize
+    pdf << "xref\n0 6\n0000000000 65535 f \n"
+    offsets.each { |offset| pdf << format("%010d 00000 n \n", offset) }
+    pdf << "trailer << /Size 6 /Root 1 0 R >>\nstartxref\n#{xref}\n%%EOF\n"
+    pdf.force_encoding(Encoding::ASCII_8BIT)
+  end
+
+  def pdf_escape(text)
+    text.to_s.gsub(/[()\\]/) { |char| "\\#{char}" }
+  end
+
+  def docx_bytes(paragraphs)
+    xml = +%(<?xml version="1.0" encoding="UTF-8" standalone="yes"?>)
+    xml << %(<w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"><w:body>)
+    paragraphs.each { |paragraph| xml << "<w:p><w:r><w:t>#{ERB::Util.html_escape(paragraph)}</w:t></w:r></w:p>" }
+    xml << "</w:body></w:document>"
+    buffer = Zip::OutputStream.write_buffer do |out|
+      out.put_next_entry("word/document.xml")
+      out.write(xml)
+    end
+    buffer.string.force_encoding(Encoding::ASCII_8BIT)
   end
 end

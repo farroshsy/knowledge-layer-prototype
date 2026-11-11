@@ -14,7 +14,7 @@
   <section>
     <div class="drop" id="dropzone">
       <strong>Seret banyak berkas ke sini</strong>
-      <p class="muted">TXT dan Markdown yang kecil langsung dipecah. PDF, gambar, dokumen berdesain, rekaman, dan teks yang terlalu besar dicatat di pemetaan tanpa dibaca.</p>
+      <p class="muted">TXT, Markdown, PDF yang punya lapisan teks, dan DOCX langsung dipecah bila teksnya terbaca. Gambar, rekaman, PPTX, PDF tanpa teks, dan teks yang terlalu besar dicatat di pemetaan tanpa dibaca.</p>
       <p id="dropnote" class="muted"></p>
       <%= form_with url: notebook_documents_path(@notebook), method: :post, html: { id: "upload-form" } do |form| %>
         <%= form.label :filename, "Nama berkas" %>
@@ -72,6 +72,15 @@
         return /\.(txt|md|markdown)$/i.test(file.name);
       }
 
+      async function asBase64(file) {
+        var bytes = new Uint8Array(await file.arrayBuffer());
+        var parts = [];
+        for (var i = 0; i < bytes.length; i += 0x8000) {
+          parts.push(String.fromCharCode.apply(null, bytes.subarray(i, i + 0x8000)));
+        }
+        return btoa(parts.join(""));
+      }
+
       async function dump(files) {
         var list = Array.prototype.slice.call(files || []);
         if (!list.length) return;
@@ -80,7 +89,12 @@
         for (var i = 0; i < list.length; i++) {
           var file = list[i];
           var row = { filename: file.name, byte_size: file.size, body: "" };
-          if (accepted(file)) row.body = await file.text();
+          if (accepted(file)) {
+            row.body = await file.text();
+          } else if (/\.(pdf|docx)$/i.test(file.name)) {
+            row.encoding = "base64";
+            row.body = await asBase64(file);
+          }
           rows.push(row);
         }
         var token = document.querySelector('meta[name="csrf-token"]').content;

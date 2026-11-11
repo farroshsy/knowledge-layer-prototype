@@ -105,13 +105,16 @@ module Evidence
         return intake("plain", "direct", "mapped", "Teks polos. Tidak lewat OCR. Langsung dipecah pada baris kosong.")
       end
       if ext == ".pdf"
-        return intake("pdf", "text_layer_or_ocr", "blocked", "PDF belum dibuka. Jalur yang benar: baca lapisan teks bila ada, lalu susun urutan baca untuk kolom, kop, dan tabel. OCR hanya untuk halaman yang tidak punya lapisan teks. Keduanya belum dijalankan.")
+        return intake("pdf", "text_layer_or_ocr", "blocked", "Berkas PDF tidak berisi byte, jadi lapisan teks tidak dibaca. OCR belum dijalankan.")
       end
       if %w[.png .jpg .jpeg .tif .tiff .webp .bmp].include?(ext)
         return intake("image", "ocr", "blocked", "Gambar adalah piksel. Jalurnya OCR per halaman, lalu urutan baca. OCR belum dijalankan.")
       end
-      if %w[.docx .pptx .odt].include?(ext)
-        return intake("designed", "text_layer", "blocked", "Berkas berdesain ini menyimpan teks di dalam XML, bukan gambar. Jalurnya ambil teks dan urutan bentuk. Bukan OCR. Belum dijalankan.")
+      if ext == ".docx"
+        return intake("designed", "text_layer", "blocked", "Berkas DOCX tidak berisi byte, jadi XML-nya tidak dibaca. Bukan OCR.")
+      end
+      if %w[.pptx .odt].include?(ext)
+        return intake("designed", "text_layer", "blocked", "PPTX dan ODT belum dibaca. DOCX yang punya teks diambil dari XML. Bukan OCR.")
       end
       if %w[.m4a .mp3 .wav .aac .mp4 .mov .webm].include?(ext)
         return intake("recording", "transcript", "blocked", "Rekaman butuh transkrip, bukan OCR. Transkrip belum dijalankan.")
