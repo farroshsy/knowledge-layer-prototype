@@ -1,6 +1,8 @@
 # Notebook operasional
 
-Aplikasi Rails ini yang dijalankan. Penjelasan produk, alur tujuh tahap, skema isian, dan batasnya ada di [README akar](../README.md). Cara memakai tiap halaman ada di [PENGGUNAAN.md](../PENGGUNAAN.md).
+Aplikasi Rails ini yang dijalankan. Jangan mulai dari berkas ini.
+
+Baca dulu [README akar](../README.md), bagian **Bacaan sebelum mencoba**, lalu kerjakan bagian **Coba sendiri**. Setelah server hidup, baca [PENGGUNAAN.md](../PENGGUNAAN.md). Empat berkas pertama yang diunggah sendiri ada di `fixtures/demo/`, urutannya tertulis di README akar.
 
 Rails 7.0.10, Ruby 3.3.2, PostgreSQL. Jawaban bertanda `rules` dan `semantic false`. Model belum dipasang.
 
