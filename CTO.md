@@ -37,9 +37,13 @@ Bagan yang sama, lebih rinci, ada di `DIAGRAM.md`.
 
 ## Peta alur
 
-Halaman Proses menampilkan peta dari dump sampai tanya. Tiap tahap menyebut apa yang dipakai, apa yang masih macet, dan perbaikan berikutnya.
+Halaman Proses menampilkan peta dari dump sampai tanya. Tiap tahap menyebut apa yang dipakai, apa yang tetap, apa yang masih macet, perbaikan dekat, dan kandidat yang belum dipasang.
 
 Yang membuatnya bekerja hari ini: Rails, PostgreSQL, dan aturan lokal. Gemini atau model lain belum dipasang. Kalau dipasang nanti, model hanya mengembalikan maksud tertutup. Rails yang menyusun kueri. Jawaban yang tidak menempel pada kutipan ditolak.
+
+Di peta yang sama ada lima langkah pemakaian dan empat rute: rekaman saja, dokumen saja, gabungan lewat id publik, dan abstain. Kartu **Use case berat: 150 PDF** adalah animasi. Ia menunjukkan klasifikasi saat dump, bentrok dua berkas, dukungan lintas berkas, lalu verifikasi yang diulang. Itu urutan yang dituju. Hari ini bentrok yang dikenali masih sempit, relasi dukungan belum disimpan, dan verifikasi masih satu cek kutipan.
+
+Tautan **Riset dan perbandingan** merangkum sumber yang dibaca. Angka di halaman itu adalah angka penulis atau hasil kandidat lama, bukan recall layar ini.
 
 PDF yang punya lapisan teks dan DOCX yang punya XML sudah dibaca menjadi teks. Yang masih macet di pemetaan: halaman gambar, OCR, PPTX, rekaman, dan berkas teks yang terlalu besar. Macet di tanya: pencarian masih irisan kata, jadi beda susunan kalimat bisa tidak ketemu.
 

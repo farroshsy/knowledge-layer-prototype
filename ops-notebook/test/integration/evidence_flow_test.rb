@@ -1,6 +1,30 @@
 require "test_helper"
 
 class EvidenceFlowTest < ActionDispatch::IntegrationTest
+  test "research page compares public notes with this app and does not claim our recall" do
+    get riset_path
+
+    assert_response :success
+    assert_select "h2", text: "Riset dan perbandingan"
+    assert_match "semantic false", response.body
+    assert_match "1,2 juta", response.body
+    assert_match "belum diukur", response.body
+    assert_match "95–98%", response.body
+    assert_match "Perkiraan", response.body
+    assert_match "TableRAG", response.body
+    assert_match "LightRAG", response.body
+    assert_match "Docling", response.body
+    assert_match "belum diulang", response.body
+    assert_match "risk-and-acceptance.md", response.body
+    assert_match "6/9", response.body
+    assert_match "9/9", response.body
+    assert_match "synthetic-macro-v1", response.body
+    assert_match "bukan sistem manajemen pembelajaran", response.body
+    assert_match "Sebelas nama", response.body
+    assert_match "ALCE", response.body
+    assert_match "Sembilan belas berkas", response.body
+  end
+
   test "budiono does not match budi and a plan is not an occurrence" do
     notebook = Notebook.create!(name: "uji")
     BusinessRecord.create!(notebook: notebook, kind: "person", display_name: "Budi", status: "unknown")
@@ -174,6 +198,18 @@ class EvidenceFlowTest < ActionDispatch::IntegrationTest
     assert_includes response.body, "Rencana pembacaan"
     assert_includes response.body, "Peta alur"
     assert_includes response.body, "Gemini atau model lain belum dipasang"
+    assert_includes response.body, "Alur penggunaan"
+    assert_includes response.body, "LightRAG"
+    assert_includes response.body, "Model tidak menulis SQL"
+    assert_includes response.body, "Nama yang mirip bukan sambungan"
+    assert_includes response.body, "Use case berat: 150 PDF"
+    assert_includes response.body, "PDF #5"
+    assert_includes response.body, "Verifikasi, lebih dari sekali"
+    assert_includes response.body, "bukan 150 berkas mentah"
+    assert_includes response.body, "Animasi klasifikasi 150 PDF"
+    assert_includes response.body, "Struktur tersimpan"
+    assert_includes response.body, "PDF #3 · hal. 4"
+    assert_includes response.body, "Lampiran menyetujui 40 juta"
     assert_includes response.body, "Skema isian"
     assert_includes response.body, "Kolom yang tidak tertulis tidak dibuat"
     assert_includes response.body, "Label belum dikenal"

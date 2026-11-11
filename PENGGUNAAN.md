@@ -60,14 +60,16 @@ flowchart TD
 ## Memakai produk
 
 1. Di beranda, klik **Buka contoh produk**. Tombol ini membuat satu notebook bernama "Operasional contoh", beberapa rekaman pekerjaan dan orang, serta berkas teks contoh. Data itu dummy.
-2. Lewati tujuh halaman dari kiri ke kanan: **Dump**, **Pemetaan**, **Proses**, **Analisis**, **Keputusan**, **Verifikasi**, **Tanya**. Di tiap halaman ada pita alur: apa yang dipakai, dan kalimat macetnya. Halaman **Proses** memuat peta lengkap, termasuk yang membuat sistem bekerja hari ini dan yang belum dipasang.
-3. Yang bekerja hari ini adalah Rails, PostgreSQL, dan aturan lokal. Gemini atau model lain belum dipasang. Perbaikan yang tertulis di peta, termasuk model, belum berjalan.
-4. Di **Tanya**, tiga pertanyaan siap pakai:
+2. Lewati tujuh halaman dari kiri ke kanan: **Dump**, **Pemetaan**, **Proses**, **Analisis**, **Keputusan**, **Verifikasi**, **Tanya**. Di tiap halaman ada pita alur: apa yang dipakai, apa yang tetap, apa yang macet, dan kandidat berikutnya. Halaman **Proses** memuat peta lengkap.
+3. Di **Proses**, baca kartu **Use case berat: 150 PDF**. Adegan itu mengulang sekitar 16 detik: dump beberapa PDF, struktur tersimpan, bentrok antara PDF #3 dan PDF #7, dukungan dari PDF #5 ke PDF #9, lalu tiga baris verifikasi. Kalimat di atas adegan berganti mengikuti sorotan. Ini ilustrasi urutan yang diinginkan untuk dump besar. Klasifikasi aturan hari ini masih terjadi di dalam permintaan unggah. Belum ada antrian, belum ada relasi "berkas ini menguatkan berkas itu", dan verifikasi yang berjalan masih satu cek: kutipan ada di teks.
+4. Buka **Riset dan perbandingan**. Halaman `/riset` tidak memakai pita alur. Isinya perbandingan sumber publik dengan perilaku layar ini, daftar berkas `research/`, enam kasus bukti, dan algoritma yang belum dijalankan ulang. Perkiraan 95–98% di halaman itu adalah perkiraan tentang jalur orang lain, bukan recall aplikasi ini.
+5. Yang bekerja hari ini adalah Rails, PostgreSQL, dan aturan lokal. Gemini atau model lain belum dipasang. Perbaikan yang tertulis di peta, termasuk model dan RAG, belum berjalan.
+6. Di **Tanya**, tiga pertanyaan siap pakai:
    - "Apa status pilot?" membaca rekaman bisnis. Status rencana tidak dihitung sebagai kejadian.
    - "Apakah pilot sudah berjalan?" tetap rencana, bukan kejadian.
    - "Apakah Budi hadir?" menampilkan bentrok, karena ada kutipan yang saling menolak.
-5. Ketik juga "Siapa peserta notulen?". Jawaban mengulang baris `Peserta:` di bawah judul bagian, bukan kalimat yang disusun model.
-6. "Berapa anggaran proposal?" ditolak bila baris anggaran tidak ada.
+7. Ketik juga "Siapa peserta notulen?". Jawaban mengulang baris `Peserta:` di bawah judul bagian, bukan kalimat yang disusun model.
+8. "Berapa anggaran proposal?" ditolak bila baris anggaran tidak ada.
 
 Notebook kosong, tanpa contoh: isi nama ruang, lalu klik **Buat notebook**.
 
@@ -104,4 +106,4 @@ Jika berkas tidak mencakup struktur itu:
 
 ## Yang tidak boleh diharapkan
 
-Belum ada akun, antrian latar, atau model. Jawaban bertanda `rules` dan `semantic false`. Ini prototipe lokal, bukan produksi.
+Belum ada akun, antrian latar, atau model. Jawaban bertanda `rules` dan `semantic false`. Adegan 150 PDF di halaman Proses adalah ilustrasi, bukan kapasitas yang sudah diukur. Ini prototipe lokal, bukan produksi.

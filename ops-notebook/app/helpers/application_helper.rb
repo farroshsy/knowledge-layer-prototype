@@ -42,7 +42,9 @@ module ApplicationHelper
       uses: "Rails dan PostgreSQL",
       how: "Berkas masuk sebagai arsip. Rekaman pekerjaan dan orang disimpan terpisah, tidak diambil dari kalimat berkas.",
       stuck: "Simpan selesai di dalam permintaan yang sama. Tidak ada antrian, jadi dump besar menahan halaman.",
-      improve: "Antrian setelah data tersimpan, supaya unggahan tidak menahan halaman."
+      improve: "Antrian setelah data tersimpan, supaya unggahan tidak menahan halaman.",
+      later: "ETL kejadian, atau materialized view, untuk menyusun ulang baris yang sudah sah.",
+      hold: "Ekstraksi dokumen tidak menulis status rekaman."
     },
     {
       key: "pemetaan",
@@ -50,7 +52,9 @@ module ApplicationHelper
       uses: "Lapisan teks PDF dan XML DOCX",
       how: "Teks polos kecil dilanjutkan. PDF yang punya lapisan teks dan DOCX yang punya XML diubah menjadi teks bagian. Gambar, rekaman, PPTX, dan PDF tanpa teks ditahan.",
       stuck: "OCR, transkrip, PPTX, dan urutan kolom belum ada. Halaman yang hanya berupa gambar tidak dibaca.",
-      improve: "OCR hanya untuk halaman tanpa lapisan teks. Susun urutan kolom dan tabel."
+      improve: "OCR hanya untuk halaman tanpa lapisan teks. Susun urutan kolom dan tabel.",
+      later: "Pembaca struktur. OCR hanya untuk berkas yang hari ini ditahan, dengan alasan bila teks tetap kosong.",
+      hold: "Struktur dan lokasi bukan jenis dokumen, dan bukan bukti klaim."
     },
     {
       key: "proses",
@@ -58,7 +62,9 @@ module ApplicationHelper
       uses: "Tiga penilai aturan",
       how: "Kata di dalam teks dan baris isian menimbang sendiri-sendiri. Nama berkas dicatat, lalu diabaikan bila berselisih. Tidak sepakat menjadi other.",
       stuck: "Penilai berjalan di dalam permintaan yang sama. Prosa yang tidak berbentuk Nama: nilai tidak menjadi isian.",
-      improve: "Bila isi abstain, nama berkas boleh menjadi penanda lemah yang tetap terlihat dan bisa dikoreksi."
+      improve: "Bila isi abstain, nama berkas boleh menjadi penanda lemah yang tetap terlihat dan bisa dikoreksi.",
+      later: "Model mengusulkan jenis. Gagal atau waktu habis jatuh ke aturan, dengan label metode yang benar-benar jalan.",
+      hold: "Jenis other tetap ada. Nama berkas bukan suara tunggal."
     },
     {
       key: "analisis",
@@ -66,7 +72,9 @@ module ApplicationHelper
       uses: "Baris PostgreSQL, skema tertutup",
       how: "Jenis membuka daftar kolom. Hanya baris yang tertulis yang disimpan, menempel pada kutipan.",
       stuck: "Label di luar skema, misalnya Risiko atau PIC, tidak menjadi peserta, langkah, atau anggaran.",
-      improve: "Kolom baru ditambah dengan sengaja. Usulan model, kalau ada nanti, tetap berstatus calon sampai orang menerima."
+      improve: "Kolom baru ditambah dengan sengaja. Usulan model, kalau ada nanti, tetap berstatus calon sampai orang menerima.",
+      later: "Ekstraksi semantik per bagian, bukan hanya baris Nama: nilai.",
+      hold: "Kutipan wajib ada di teks versi aktif. Kalimat di berkas adalah data, bukan perintah."
     },
     {
       key: "keputusan",
@@ -74,7 +82,9 @@ module ApplicationHelper
       uses: "Aturan bentrok dan modalitas",
       how: "Rencana tidak dihitung sebagai kejadian. Klaim yang ditolak tidak dipakai. Bentrok tetap terlihat.",
       stuck: "Bentrok yang dikenali masih sempit: tanggal pilot yang berbeda, dan kehadiran yang saling menolak.",
-      improve: "Orang tetap yang memutuskan. Model tidak boleh menutup bentrok."
+      improve: "Orang tetap yang memutuskan. Model tidak boleh menutup bentrok.",
+      later: "Model polaritas dan modalitas, diuji pada kasus yang sama sebelum mengganti leksikon.",
+      hold: "Rencana bukan kejadian. Bentrok tidak memilih pemenang diam-diam."
     },
     {
       key: "verifikasi",
@@ -82,15 +92,19 @@ module ApplicationHelper
       uses: "Cek kutipan ke teks sumber",
       how: "Kutipan harus masih ada di teks. Pemeriksaan tidak membaca jenis berkas. Kemiripan topik bukan dukungan.",
       stuck: "Belum ada peninjau kedua. Setiap keputusan masih manual, dan belum ada akun.",
-      improve: "Jawaban model, kalau dipasang, tetap harus lolos cek kutipan ini. Gagal berarti ditolak."
+      improve: "Jawaban model, kalau dipasang, tetap harus lolos cek kutipan ini. Gagal berarti ditolak.",
+      later: "Pemeriksa kedua. Adanya sitasi belum berarti sitasi setia. Pemisahan relevansi dan kesetiaan belum dijalankan di sini.",
+      hold: "Lokasi kutipan bukan dukungan semantik yang sudah diukur."
     },
     {
       key: "tanya",
       title: "Tanya",
       uses: "Irisan kata, semantic false",
       how: "Pertanyaan mencari judul bagian, isian, dan klaim, lalu mengulang baris yang ketemu. Tidak ada baris berarti menolak. Model tidak menulis SQL.",
-      stuck: "Beda susunan kata bisa tidak ketemu, karena ini irisan kata, bukan makna. Chat tidak menyusun kalimat.",
-      improve: "Model seperti Gemini boleh mengembalikan maksud tertutup, misalnya jenis dan nama kolom. Rails yang menyusun kueri."
+      stuck: "Beda susunan kata bisa tidak ketemu, karena ini irisan kata, bukan makna. Chat tidak menyusun kalimat. Irisan kata bisa menarik kalimat yang hanya kebetulan berbagi token.",
+      improve: "Model seperti Gemini boleh mengembalikan maksud tertutup, misalnya jenis dan nama kolom. Rails yang menyusun kueri.",
+      later: "Di sini RAG bisa masuk: potongan, lalu saringan kedua. Late chunking hanya bila sudah ada embedding. LightRAG atau GraphRAG hanya bila pertanyaan relasi pada korpus ini mengalahkan irisan kata. Prosa disusun setelah bukti dipilih.",
+      hold: "Model tidak menulis SQL. Nama yang mirip bukan sambungan. Tidak ada baris berarti abstain. Perkiraan 95–98% bukan angka recall aplikasi ini."
     }
   ].freeze
 

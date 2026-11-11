@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root "workbench#show"
+  get "riset", to: "workbench#riset", as: :riset
   post "notebooks", to: "workbench#create_notebook"
   post "notebooks/example", to: "workbench#create_example", as: :example_notebooks
   post "notebooks/:notebook_id/records", to: "workbench#create_record", as: :notebook_records

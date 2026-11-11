@@ -18,6 +18,7 @@
       <div>
         <h1>Notebook operasional</h1>
         <p class="muted">Gudang berkas internal atau berkas klien. Alur yang berjalan: dump, pemetaan, proses, analisis, keputusan, verifikasi, lalu tanya.</p>
+        <%= link_to "Riset dan perbandingan", riset_path(notebook_id: @notebook&.id), class: "riset-link #{'on' if action_name == 'riset'}" %>
       </div>
       <%= button_to "Buka contoh produk", example_notebooks_path, method: :post %>
     </header>
@@ -48,7 +49,7 @@
       <% end %>
     <% end %>
     <p class="muted">Pekerjaan dan orang tetap data terstruktur di luar berkas. Kalimat di berkas tidak mengubah status mereka.</p>
-    <% if @notebook %>
+    <% if @notebook && action_name != "riset" %>
       <%= render "workbench/flow_rail" %>
     <% end %>
     <%= yield %>

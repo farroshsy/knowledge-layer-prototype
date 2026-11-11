@@ -13,7 +13,7 @@ Kerjakan dari atas ke bawah. Satu baris selesai sebelum pindah ke baris berikutn
 | Urutan | Yang dibaca atau dikerjakan | Selesai bila |
 |---|---|---|
 | 1 | README ini, sampai akhir bagian "Coba sendiri" | Server hidup di http://127.0.0.1:3000 dan tombol **Buka contoh produk** sudah dibuka |
-| 2 | [PENGGUNAAN.md](PENGGUNAAN.md), setelah server hidup | Tujuh halaman sudah dibuka sekali: Dump, Pemetaan, Proses, Analisis, Keputusan, Verifikasi, Tanya |
+| 2 | [PENGGUNAAN.md](PENGGUNAAN.md), setelah server hidup | Tujuh halaman sudah dibuka sekali, plus **Riset dan perbandingan** dan adegan 150 PDF di Proses |
 | 3 | Empat berkas di `fixtures/demo/`, dalam urutan bagian "Unggah empat berkas ini" | Setiap berkas sudah diunggah ke notebook kosong dan hasilnya cocok dengan tabel |
 | 4 | Bagian "Penjelasan perilaku" di README ini, bersama [DIAGRAM.md](DIAGRAM.md) | Jenis, kolom, nama berkas, dan batas macet sudah dipahami sebelum kode diubah |
 | 5 | Kode, hanya setelah empat langkah di atas | Pintu masuk yang dibaca: `ops-notebook/app/services/evidence.rb`, lalu `evidence/lexicon.rb`, `evidence/ingest.rb`, `evidence/query.rb` |
@@ -71,20 +71,21 @@ Uji, dari folder `ops-notebook`, dengan dua variabel lingkungan yang sama:
 bin/rails test
 ```
 
-Jalankan uji ini setelah percobaan di bawah, atau sebelum mengubah kode. Hasil terakhir pada cabang ini: 28 run, 209 assertion, 0 gagal.
+Jalankan uji ini setelah percobaan di bawah, atau sebelum mengubah kode. Hasil terakhir pada cabang ini: 29 run, 269 assertion, 0 gagal.
 
 ## Coba sendiri
 
 ### 1. Contoh produk
 
 1. Klik **Buka contoh produk**. Ruang yang muncul bernama "Operasional contoh". Isinya dummy: orang, pekerjaan, satu berkas `rapat-contoh.txt`, dan empat berkas dari `fixtures/demo/`.
-2. Buka **Proses**. Di halaman itu ada **Peta alur** dan **Skema isian**. Peta itu yang menjelaskan apa yang dipakai, apa yang macet, dan apa yang belum dipasang.
+2. Buka **Proses**. Di halaman itu ada **Peta alur** dan **Skema isian**. Peta itu menjelaskan apa yang dipakai, apa yang tetap, apa yang macet, perbaikan dekat, dan kandidat yang belum dipasang. Di kartu **Use case berat: 150 PDF** ada adegan yang berulang: berkas masuk, PDF #3 bentrok dengan PDF #7, PDF #5 menguatkan PDF #9, lalu tiga cek verifikasi. Adegan itu gambar urutan kerja. Sistem yang berjalan belum memproses 150 PDF dan belum menyimpan relasi dukungan lintas berkas.
 3. Buka **Tanya** dan tekan tiga pertanyaan yang sudah tersedia:
    - "Apa status pilot?" membaca rekaman bisnis. Statusnya rencana.
    - "Apakah pilot sudah berjalan?" tetap rencana, bukan kejadian.
    - "Apakah Budi hadir?" menampilkan bentrok, karena ada kutipan yang saling menolak.
 4. Ketik "Siapa peserta notulen?". Jawaban mengulang baris `Peserta:` di bawah judul bagian. Contoh ini memuat lebih dari satu notulen, jadi bisa ada lebih dari satu baris.
 5. Ketik "Berapa anggaran proposal?". Tidak ada baris `Anggaran:`, jadi jawabannya ditolak.
+6. Buka **Riset dan perbandingan** di kepala halaman. Halaman itu merangkum berkas di `research/`: pos publik, makalah manajemen pengetahuan, algoritma yang abstraknya dibaca, dan kontrak bukti. Angka dari penulis tetap laporan penulis. Recall, presisi, dan F1 aplikasi ini belum diukur.
 
 Rekaman pekerjaan dan orang ada di bagian yang bisa dibuka pada halaman **Dump**. Kalimat di berkas tidak mengubah status mereka.
 

@@ -136,3 +136,35 @@ flowchart LR
   pg --> aturan
   model -.->|"Rails yang menyusun kueri<br/>kutipan gagal berarti ditolak"| aturan
 ```
+
+## Use case 150 PDF
+
+Bagan ini sama dengan adegan di halaman **Proses**. Kotaknya ilustrasi. Mesin yang berjalan belum menyimpan bentrok umum lintas berkas, belum menyimpan relasi dukungan, dan belum memproses 150 PDF dalam antrian.
+
+```mermaid
+flowchart TD
+  dump["Dump 150 PDF"] --> bagian["Simpan halaman dan lokasi"]
+  bagian --> klaim["Klaim: predikat, polaritas, berkas, halaman"]
+  klaim --> lintas{"Lintas berkas"}
+  lintas -->|"tidak bisa sama-sama benar"| bentrok["Bentrok, misalnya PDF 3 dan PDF 7"]
+  lintas -->|"menguatkan"| dukung["Dukungan, misalnya PDF 5 ke PDF 9"]
+  bentrok --> struktur["Struktur tersimpan"]
+  dukung --> struktur
+  struktur --> tanya["Tanya membaca struktur"]
+  tanya --> cek1["Kutipan ada di halaman"]
+  cek1 --> cek2["Kalimat utuh, bukan sekata"]
+  cek2 --> cek3["Tanpa sumber dibuang"]
+```
+
+Halaman **Riset dan perbandingan** (`/riset`) menulis batas yang sama dalam bentuk tabel: apa yang dipakai hari ini, apa yang tetap, dan kandidat yang belum dipasang. RAG, late chunking, LightRAG, dan GraphRAG ada di kolom nanti. Angka penulis tidak dihitung ulang di aplikasi ini.
+
+## Empat rute tanya
+
+```mermaid
+flowchart TD
+  tanya["Pertanyaan"] --> rute{"Rute tertutup"}
+  rute -->|"status tercatat"| rekaman["Rekaman saja"]
+  rute -->|"apa yang tertulis"| dokumen["Dokumen saja"]
+  rute -->|"id publik sama di pertanyaan dan kutipan"| gabung["Gabungan"]
+  rute -->|"tidak ada baris atau di luar operasi"| abstain["Abstain"]
+```

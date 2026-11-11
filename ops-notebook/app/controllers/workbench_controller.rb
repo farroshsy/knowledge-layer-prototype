@@ -34,6 +34,10 @@ class WorkbenchController < ApplicationController
     prepare_notebook or return
   end
 
+  def riset
+    load_notebook
+  end
+
   def create_notebook
     notebook = Notebook.create!(name: params[:name].to_s.strip.presence || "Operasional")
     redirect_to root_path(notebook_id: notebook.id)

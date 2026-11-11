@@ -15,8 +15,10 @@
     <article class="stage">
       <p><strong><%= current[:title] %></strong> · dipakai: <%= current[:uses] %></p>
       <p><%= current[:how] %></p>
+      <p><span class="stuck">Tetap.</span> <%= current[:hold] %></p>
       <p><span class="stuck">Macet.</span> <%= current[:stuck] %></p>
       <p><span class="later">Perbaikan.</span> <%= current[:improve] %></p>
+      <p><span class="later">Nanti.</span> <%= current[:later] %></p>
     </article>
   <% end %>
 </nav>
